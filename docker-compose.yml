@@ -1,0 +1,22 @@
+# ==========================================
+# SuperFit AI Engine — تشغيل مركّب (v2)
+# env_file: المفاتيح من .env وقت التشغيل
+# volumes: القاعدة تربط حياً من جهازك — بدون نسخ داخل الصورة
+# ==========================================
+
+services:
+  ai-engine:
+    build: .
+    container_name: superfit-ai
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app/data:/engine/app/data
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

@@ -1,0 +1,75 @@
+Food,Measure,Grams,Calories,Protein,Fat,Sat.Fat,Fiber,Carbs,Category,FitHub_Macro_Group
+Cows' milk,1 qt.,976,660,32,40,36,0,48.0,Dairy products,High-Carbs
+Milk skim,1 qt.,984,360,36,0,t,0,52.0,Dairy products,High-Carbs
+Buttermilk,1 cup,246,127,9,5,4,0,13.0,Dairy products,High-Carbs
+Fortified milk,6 cups,"1,419",1373,89,42,23,1.4,119.0,Dairy products,High-Carbs
+Powdered milk,1 cup,103,515,27,28,24,0,39.0,Dairy products,High-Carbs
+Goats' milk,1 cup,244,165,8,10,8,0,11.0,Dairy products,High-Carbs
+skim. milk,1 cup,250,128,18,4,3,1,13.0,Dairy products,High-Protein
+Ice milk,1 cup,190,275,9,10,9,0,32.0,Dairy products,High-Carbs
+Cheese,1 cup,225,240,30,11,10,0,6.0,Dairy products,High-Protein
+Cream cheese,1 oz.,28,105,2,11,10,0,1.0,Dairy products,Healthy-Fats
+Processed cheese,1 oz.,28,105,7,9,8,0,0.0,Dairy products,Healthy-Fats
+Eggs raw,2,100,150,12,12,10,0,0.0,Dairy products,High-Protein
+Eggs Scrambled or fried,2,128,220,13,16,14,0,1.0,Dairy products,Healthy-Fats
+Olive oil,1T.,14,125,0,14,3,0,0.0,"Fats, Oils, Shortenings",Healthy-Fats
+Beef,3 oz.,85,245,23,16,15,0,0.0,"Meat, Poultry",High-Protein
+Roast beef,3 oz.,85,390,16,36,35,0,0.0,"Meat, Poultry",Healthy-Fats
+Corned beef,3 oz.,85,185,22,10,9,0,0.0,"Meat, Poultry",High-Protein
+Corned beef hash canned,3 oz.,85,120,12,8,7,t,6.0,"Meat, Poultry",High-Protein
+Corned beef hash Dried,2 oz.,56,115,19,4,4,0,0.0,"Meat, Poultry",High-Protein
+Corned beef hash Stew,1 cup,235,185,15,10,9,t,15.0,"Meat, Poultry",High-Protein
+chicken,3 oz.,85,185,23,9,7,0,0.0,"Meat, Poultry",High-Protein
+"Fried, breast or leg and thigh chicken",3 oz.,85,245,25,15,11,0,0.0,"Meat, Poultry",High-Protein
+Roasted chicken,3 1/2 oz.,100,290,25,20,16,0,0.0,"Meat, Poultry",High-Protein
+"Chicken livers, fried",3 med.,100,140,22,14,12,0,2.3,"Meat, Poultry",High-Protein
+Crab meat,3 oz.,85,90,14,2,0,0,1.0,"Fish, Seafood",High-Protein
+Fish sticks fried,5,112,200,19,10,5,0,8.0,"Fish, Seafood",High-Protein
+Swordfish,1 steak,100,180,27,6,0,0,0.0,"Fish, Seafood",High-Protein
+Steamed cabbage,1 cup,170,40,2,0,0,1.3,9.0,Vegetables A-E,High-Carbs
+Cucumbers,8,50,6,0,0,0,0.2,1.0,Vegetables A-E,High-Carbs
+Eggplant,1 cup,180,30,2,0,0,1.0,9.0,Vegetables A-E,High-Carbs
+Lentils,1 cup,200,212,15,0,0,2.4,38.0,Vegetables F-P,High-Carbs
+Peppers with beef and crumbs,1 med.,150,255,19,9,8,1,24.0,Vegetables R-Z,High-Carbs
+"Potatoes, baked",1 med.,100,100,2,0,0,0.5,22.0,Vegetables R-Z,High-Carbs
+Potatoes Mashed with milk and butter,1 cup,200,230,4,12,11,0.7,28.0,Vegetables R-Z,High-Carbs
+"Potatoes, pan-tried",3/4 cup,100,268,4,14,6,0.40,33.0,Vegetables R-Z,High-Carbs
+Scalloped with cheese potatoes,3/4 cup,100,145,6,8,7,0.40,14.0,Vegetables R-Z,High-Carbs
+Steamed potatoes before peeling,1 med.,100,80,2,0,0,0.40,19.0,Vegetables R-Z,High-Carbs
+Potato chips,10,20,110,1,7,4,t,10.0,Vegetables R-Z,High-Carbs
+Spinach,1 cup,100,26,3,0,0,1,3.0,Vegetables R-Z,High-Protein
+Sweet potatoes,1 med.,110,155,2,1,0,1,36.0,Vegetables R-Z,High-Carbs
+Tomatoes,1 cup,240,50,2,0,0,1,9.0,Vegetables R-Z,High-Carbs
+Tomato juice,1 cup,240,50,2,0,0,0.6,10.0,Vegetables R-Z,High-Carbs
+Tomato catsup,1 T.,17,15,0,0,0,t,4.0,Vegetables R-Z,High-Carbs
+Apple juice canned,1 cup,250,125,0,0,0,0,34.0,Fruits A-F,High-Carbs
+Apple vinegar,1/3 cup,100,14,0,0,0,0,3.0,Fruits A-F,High-Carbs
+"Apples, raw",1 med,130,70,0,0,0,1,18.0,Fruits A-F,High-Carbs
+Banana,1 med.,150,85,1,0,0,0.9,23.0,Fruits A-F,High-Carbs
+Dates,1 cup,178,505,4,0,0,3.6,134.0,Fruits A-F,High-Carbs
+"Oranges 3"" diameter",1 med.,180,60,2,0,t,1,16.0,Fruits G-P,High-Carbs
+Orange juice,8 oz. or,250,112,2,0,0,0.2,25.0,Fruits G-P,High-Carbs
+Pineapple,1 large slice,122,95,0,0,0,0.4,26.0,Fruits G-P,High-Carbs
+Pineapple Crushed,1 cup,260,205,1,0,0,0.7,55.0,Fruits G-P,High-Carbs
+Pineapple juice,1 cup,250,120,1,0,0,0.2,32.0,Fruits G-P,High-Carbs
+"Bread, cracked wheat",1 slice,23,60,2,1,1,0.10,12.0,"Breads, cereals, fastfood,grains",High-Carbs
+Corn bread ground meal,1 serving,50,100,3,4,2,0.30,15.0,"Breads, cereals, fastfood,grains",High-Carbs
+Baked with cheese,1 cup,220,475,18,25,24,t,44.0,"Breads, cereals, fastfood,grains",High-Carbs
+Puffed rice,1 cup,14,55,0,0,0,t,12.0,"Breads, cereals, fastfood,grains",High-Carbs
+Rice,1 cup,208,748,15,3,0,1.2,154.0,"Breads, cereals, fastfood,grains",High-Carbs
+Rice flakes,1 cup,30,115,2,0,0,0.1,26.0,"Breads, cereals, fastfood,grains",High-Carbs
+Rice polish,1/2 cup,50,132,6,6,0,1.2,28.0,"Breads, cereals, fastfood,grains",High-Carbs
+Spaghetti with meat sauce,1 cup,250,285,13,10,6,0.50,35.0,"Breads, cereals, fastfood,grains",High-Carbs
+with tomatoes and cheese,1 cup,250,210,6,5,3,0.50,36.0,"Breads, cereals, fastfood,grains",High-Carbs
+Spanish rice,1 cup,250,217,4,4,0,1.20,40.0,"Breads, cereals, fastfood,grains",High-Carbs
+Beef soup,1 cup,250,100,6,4,4,0.50,11.0,Soups,High-Carbs
+chicken soup,1 cup,250,75,4,2,2,0,10.0,Soups,High-Carbs
+Tomato soup,1 cup,245,175,6,7,6,0.50,22.0,Soups,High-Carbs
+Apple betty,1 serving,100,150,1,4,0,0.5,29.0,"Desserts, sweets",High-Carbs
+Bread pudding,3/4 cup,200,374,11,12,11,0.20,56.0,"Desserts, sweets",High-Carbs
+Gingerbread,1 slice,55,180,2,7,6,t,28.0,"Desserts, sweets",High-Carbs
+Milk chocolate,2-oz. bar,56,290,2,6,6,0.2,44.0,"Desserts, sweets",High-Carbs
+Doughnuts,1,33,135,2,7,4,t,17.0,"Desserts, sweets",High-Carbs
+Brazil nuts,1/2 cup,70,457,10,47,31,2,7.0,Seeds and Nuts,Healthy-Fats
+Peanuts,1/3 cup,50,290,13,25,16,1.2,9.0,Seeds and Nuts,Healthy-Fats
+Walnuts,1/2 cup,50,325,7,32,7,1,8.0,Seeds and Nuts,Healthy-Fats
