@@ -1,0 +1,3291 @@
+{
+  "status": "success",
+  "duration_weeks": 2,
+  "summary": {
+    "goal": "lose_fat",
+    "target_calories": 1425.3,
+    "protein_g": 116,
+    "carbs_g": 105,
+    "fats_g": 40,
+    "training_days_per_week": 0
+  },
+  "medical_detected": [
+    "سكري"
+  ],
+  "foods_excluded_count": 50,
+  "weeks": [
+    {
+      "week_number": 1,
+      "days": [
+        {
+          "day_number": 1,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "skim. milk",
+                  "quantity": "100 غرام",
+                  "calories": 51.2,
+                  "protein_g": 7.2,
+                  "carbs_g": 5.2,
+                  "fat_g": 1.6
+                }
+              ],
+              "total_calories": 302.4,
+              "total_protein_g": 27.1,
+              "total_carbs_g": 10.3,
+              "total_fat_g": 16.5,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 280.6,
+              "total_protein_g": 36.0,
+              "total_carbs_g": 6.4,
+              "total_fat_g": 26.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 340.6,
+              "total_protein_g": 43.5,
+              "total_carbs_g": 3.0,
+              "total_fat_g": 14.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "Crab meat",
+                  "quantity": "50 غرام",
+                  "calories": 52.9,
+                  "protein_g": 8.2,
+                  "carbs_g": 0.6,
+                  "fat_g": 1.2
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "20 غرام",
+                  "calories": 21.3,
+                  "protein_g": 2.7,
+                  "carbs_g": 0.5,
+                  "fat_g": 1.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "50 غرام",
+                  "calories": 13.0,
+                  "protein_g": 1.5,
+                  "carbs_g": 1.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "30 غرام",
+                  "calories": 267.9,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 30.0
+                }
+              ],
+              "total_calories": 355.1,
+              "total_protein_g": 12.4,
+              "total_carbs_g": 2.6,
+              "total_fat_g": 32.2,
+              "swappable": []
+            }
+          ],
+          "total_calories": 1278.7,
+          "total_protein_g": 119.0,
+          "total_carbs_g": 22.3,
+          "total_fat_g": 88.7,
+          "calories_deviation": -146.6
+        },
+        {
+          "day_number": 2,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 340.5,
+              "total_protein_g": 19.9,
+              "total_carbs_g": 5.1,
+              "total_fat_g": 24.9,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 293.6,
+              "total_protein_g": 37.5,
+              "total_carbs_g": 7.9,
+              "total_fat_g": 26.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                }
+              ],
+              "total_calories": 296.0,
+              "total_protein_g": 43.5,
+              "total_carbs_g": 3.0,
+              "total_fat_g": 9.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "10 غرام",
+                  "calories": 65.0,
+                  "protein_g": 1.4,
+                  "carbs_g": 1.6,
+                  "fat_g": 6.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 346.0,
+              "total_protein_g": 15.8,
+              "total_carbs_g": 12.0,
+              "total_fat_g": 29.6,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1276.1,
+          "total_protein_g": 116.7,
+          "total_carbs_g": 28.0,
+          "total_fat_g": 89.5,
+          "calories_deviation": -149.2
+        },
+        {
+          "day_number": 3,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 340.5,
+              "total_protein_g": 19.9,
+              "total_carbs_g": 5.1,
+              "total_fat_g": 24.9,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 338.3,
+              "total_protein_g": 37.5,
+              "total_carbs_g": 7.9,
+              "total_fat_g": 31.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 353.6,
+              "total_protein_g": 45.0,
+              "total_carbs_g": 4.5,
+              "total_fat_g": 14.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 334.3,
+              "total_protein_g": 21.1,
+              "total_carbs_g": 11.7,
+              "total_fat_g": 25.6,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1366.7,
+          "total_protein_g": 123.5,
+          "total_carbs_g": 29.2,
+          "total_fat_g": 95.5,
+          "calories_deviation": -58.6
+        },
+        {
+          "day_number": 4,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "30 غرام",
+                  "calories": 32.0,
+                  "protein_g": 4.0,
+                  "carbs_g": 0.8,
+                  "fat_g": 1.5
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 319.2,
+              "total_protein_g": 17.2,
+              "total_carbs_g": 4.6,
+              "total_fat_g": 24.0,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 280.6,
+              "total_protein_g": 36.0,
+              "total_carbs_g": 6.4,
+              "total_fat_g": 26.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 340.6,
+              "total_protein_g": 43.5,
+              "total_carbs_g": 3.0,
+              "total_fat_g": 14.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "10 غرام",
+                  "calories": 65.0,
+                  "protein_g": 1.4,
+                  "carbs_g": 1.6,
+                  "fat_g": 6.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 346.0,
+              "total_protein_g": 15.8,
+              "total_carbs_g": 12.0,
+              "total_fat_g": 29.6,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1286.4,
+          "total_protein_g": 112.5,
+          "total_carbs_g": 26.0,
+          "total_fat_g": 93.6,
+          "calories_deviation": -138.9
+        },
+        {
+          "day_number": 5,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 340.5,
+              "total_protein_g": 19.9,
+              "total_carbs_g": 5.1,
+              "total_fat_g": 24.9,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 398.3,
+              "total_protein_g": 45.0,
+              "total_carbs_g": 4.5,
+              "total_fat_g": 19.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 325.3,
+              "total_protein_g": 36.0,
+              "total_carbs_g": 6.4,
+              "total_fat_g": 31.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "100 غرام",
+                  "calories": 51.2,
+                  "protein_g": 7.2,
+                  "carbs_g": 5.2,
+                  "fat_g": 1.6
+                },
+                {
+                  "name": "Crab meat",
+                  "quantity": "50 غرام",
+                  "calories": 52.9,
+                  "protein_g": 8.2,
+                  "carbs_g": 0.6,
+                  "fat_g": 1.2
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "30 غرام",
+                  "calories": 267.9,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 30.0
+                }
+              ],
+              "total_calories": 372.0,
+              "total_protein_g": 15.4,
+              "total_carbs_g": 5.8,
+              "total_fat_g": 32.8,
+              "swappable": []
+            }
+          ],
+          "total_calories": 1436.1,
+          "total_protein_g": 116.3,
+          "total_carbs_g": 21.8,
+          "total_fat_g": 107.7,
+          "calories_deviation": 10.8
+        },
+        {
+          "day_number": 6,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 340.5,
+              "total_protein_g": 19.9,
+              "total_carbs_g": 5.1,
+              "total_fat_g": 24.9,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 325.3,
+              "total_protein_g": 36.0,
+              "total_carbs_g": 6.4,
+              "total_fat_g": 31.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 385.3,
+              "total_protein_g": 43.5,
+              "total_carbs_g": 3.0,
+              "total_fat_g": 19.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "15 غرام",
+                  "calories": 97.5,
+                  "protein_g": 2.1,
+                  "carbs_g": 2.4,
+                  "fat_g": 9.6
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 378.5,
+              "total_protein_g": 16.5,
+              "total_carbs_g": 12.8,
+              "total_fat_g": 32.8,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1429.6,
+          "total_protein_g": 115.9,
+          "total_carbs_g": 27.3,
+          "total_fat_g": 107.7,
+          "calories_deviation": 4.3
+        },
+        {
+          "day_number": 7,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "30 غرام",
+                  "calories": 32.0,
+                  "protein_g": 4.0,
+                  "carbs_g": 0.8,
+                  "fat_g": 1.5
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 319.2,
+              "total_protein_g": 17.2,
+              "total_carbs_g": 4.6,
+              "total_fat_g": 24.0,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 338.3,
+              "total_protein_g": 37.5,
+              "total_carbs_g": 7.9,
+              "total_fat_g": 31.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Crab meat",
+                  "quantity": "150 غرام",
+                  "calories": 158.8,
+                  "protein_g": 24.7,
+                  "carbs_g": 1.8,
+                  "fat_g": 3.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 318.7,
+              "total_protein_g": 27.7,
+              "total_carbs_g": 4.8,
+              "total_fat_g": 18.5,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Crab meat",
+                  "options": [
+                    {
+                      "name": "Chicken livers, fried",
+                      "quantity": "100 غرام",
+                      "calories": 140.0,
+                      "protein_g": 22.0,
+                      "carbs_g": 2.3,
+                      "fat_g": 14.0
+                    },
+                    {
+                      "name": "Corned beef hash canned",
+                      "quantity": "100 غرام",
+                      "calories": 141.18,
+                      "protein_g": 14.12,
+                      "carbs_g": 7.06,
+                      "fat_g": 9.41
+                    },
+                    {
+                      "name": "Eggs raw",
+                      "quantity": "100 غرام",
+                      "calories": 150.0,
+                      "protein_g": 12.0,
+                      "carbs_g": 0.0,
+                      "fat_g": 12.0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "15 غرام",
+                  "calories": 97.5,
+                  "protein_g": 2.1,
+                  "carbs_g": 2.4,
+                  "fat_g": 9.6
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 378.5,
+              "total_protein_g": 16.5,
+              "total_carbs_g": 12.8,
+              "total_fat_g": 32.8,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1354.7,
+          "total_protein_g": 98.9,
+          "total_carbs_g": 30.1,
+          "total_fat_g": 106.3,
+          "calories_deviation": -70.6
+        }
+      ]
+    },
+    {
+      "week_number": 1,
+      "days": [
+        {
+          "day_number": 1,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "30 غرام",
+                  "calories": 32.0,
+                  "protein_g": 4.0,
+                  "carbs_g": 0.8,
+                  "fat_g": 1.5
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 319.2,
+              "total_protein_g": 17.2,
+              "total_carbs_g": 4.6,
+              "total_fat_g": 24.0,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 293.6,
+              "total_protein_g": 37.5,
+              "total_carbs_g": 7.9,
+              "total_fat_g": 26.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 353.6,
+              "total_protein_g": 45.0,
+              "total_carbs_g": 4.5,
+              "total_fat_g": 14.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "10 غرام",
+                  "calories": 65.0,
+                  "protein_g": 1.4,
+                  "carbs_g": 1.6,
+                  "fat_g": 6.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 346.0,
+              "total_protein_g": 15.8,
+              "total_carbs_g": 12.0,
+              "total_fat_g": 29.6,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1312.4,
+          "total_protein_g": 115.5,
+          "total_carbs_g": 29.0,
+          "total_fat_g": 93.6,
+          "calories_deviation": -112.9
+        },
+        {
+          "day_number": 2,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 340.5,
+              "total_protein_g": 19.9,
+              "total_carbs_g": 5.1,
+              "total_fat_g": 24.9,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Roasted chicken",
+                  "quantity": "150 غرام",
+                  "calories": 435.0,
+                  "protein_g": 37.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 30.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 563.3,
+              "total_protein_g": 42.0,
+              "total_carbs_g": 4.5,
+              "total_fat_g": 40.0,
+              "swappable": []
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 340.6,
+              "total_protein_g": 43.5,
+              "total_carbs_g": 3.0,
+              "total_fat_g": 14.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "10 غرام",
+                  "calories": 65.0,
+                  "protein_g": 1.4,
+                  "carbs_g": 1.6,
+                  "fat_g": 6.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 346.0,
+              "total_protein_g": 15.8,
+              "total_carbs_g": 12.0,
+              "total_fat_g": 29.6,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1590.4,
+          "total_protein_g": 121.2,
+          "total_carbs_g": 24.6,
+          "total_fat_g": 108.5,
+          "calories_deviation": 165.1
+        },
+        {
+          "day_number": 3,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 340.5,
+              "total_protein_g": 19.9,
+              "total_carbs_g": 5.1,
+              "total_fat_g": 24.9,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 338.3,
+              "total_protein_g": 37.5,
+              "total_carbs_g": 7.9,
+              "total_fat_g": 31.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 353.6,
+              "total_protein_g": 45.0,
+              "total_carbs_g": 4.5,
+              "total_fat_g": 14.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "15 غرام",
+                  "calories": 97.5,
+                  "protein_g": 2.1,
+                  "carbs_g": 2.4,
+                  "fat_g": 9.6
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 378.5,
+              "total_protein_g": 16.5,
+              "total_carbs_g": 12.8,
+              "total_fat_g": 32.8,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1410.9,
+          "total_protein_g": 118.9,
+          "total_carbs_g": 30.3,
+          "total_fat_g": 102.7,
+          "calories_deviation": -14.4
+        },
+        {
+          "day_number": 4,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 340.5,
+              "total_protein_g": 19.9,
+              "total_carbs_g": 5.1,
+              "total_fat_g": 24.9,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 338.3,
+              "total_protein_g": 37.5,
+              "total_carbs_g": 7.9,
+              "total_fat_g": 31.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 353.6,
+              "total_protein_g": 45.0,
+              "total_carbs_g": 4.5,
+              "total_fat_g": 14.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "15 غرام",
+                  "calories": 97.5,
+                  "protein_g": 2.1,
+                  "carbs_g": 2.4,
+                  "fat_g": 9.6
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 378.5,
+              "total_protein_g": 16.5,
+              "total_carbs_g": 12.8,
+              "total_fat_g": 32.8,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1410.9,
+          "total_protein_g": 118.9,
+          "total_carbs_g": 30.3,
+          "total_fat_g": 102.7,
+          "calories_deviation": -14.4
+        },
+        {
+          "day_number": 5,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 340.5,
+              "total_protein_g": 19.9,
+              "total_carbs_g": 5.1,
+              "total_fat_g": 24.9,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 398.3,
+              "total_protein_g": 45.0,
+              "total_carbs_g": 4.5,
+              "total_fat_g": 19.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                }
+              ],
+              "total_calories": 280.6,
+              "total_protein_g": 36.0,
+              "total_carbs_g": 6.4,
+              "total_fat_g": 26.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "10 غرام",
+                  "calories": 65.0,
+                  "protein_g": 1.4,
+                  "carbs_g": 1.6,
+                  "fat_g": 6.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 346.0,
+              "total_protein_g": 15.8,
+              "total_carbs_g": 12.0,
+              "total_fat_g": 29.6,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1365.4,
+          "total_protein_g": 116.7,
+          "total_carbs_g": 28.0,
+          "total_fat_g": 99.5,
+          "calories_deviation": -59.9
+        },
+        {
+          "day_number": 6,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "30 غرام",
+                  "calories": 32.0,
+                  "protein_g": 4.0,
+                  "carbs_g": 0.8,
+                  "fat_g": 1.5
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 319.2,
+              "total_protein_g": 17.2,
+              "total_carbs_g": 4.6,
+              "total_fat_g": 24.0,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 338.3,
+              "total_protein_g": 37.5,
+              "total_carbs_g": 7.9,
+              "total_fat_g": 31.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Swordfish",
+                  "quantity": "150 غرام",
+                  "calories": 270.0,
+                  "protein_g": 40.5,
+                  "carbs_g": 0.0,
+                  "fat_g": 9.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "150 غرام",
+                  "calories": 39.0,
+                  "protein_g": 4.5,
+                  "carbs_g": 4.5,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 398.3,
+              "total_protein_g": 45.0,
+              "total_carbs_g": 4.5,
+              "total_fat_g": 19.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Swordfish",
+                  "options": [
+                    {
+                      "name": "Beef",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 27.06,
+                      "carbs_g": 0.0,
+                      "fat_g": 18.82
+                    },
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Fried, breast or leg and thigh chicken",
+                      "quantity": "100 غرام",
+                      "calories": 288.24,
+                      "protein_g": 29.41,
+                      "carbs_g": 0.0,
+                      "fat_g": 17.65
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "250 مل",
+                  "calories": 51.2,
+                  "protein_g": 7.2,
+                  "carbs_g": 5.2,
+                  "fat_g": 1.6
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "15 غرام",
+                  "calories": 97.5,
+                  "protein_g": 2.1,
+                  "carbs_g": 2.4,
+                  "fat_g": 9.6
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 327.3,
+              "total_protein_g": 9.3,
+              "total_carbs_g": 7.6,
+              "total_fat_g": 31.2,
+              "swappable": []
+            }
+          ],
+          "total_calories": 1383.1,
+          "total_protein_g": 109.0,
+          "total_carbs_g": 24.6,
+          "total_fat_g": 105.2,
+          "calories_deviation": -42.2
+        },
+        {
+          "day_number": 7,
+          "meals": [
+            {
+              "meal_type": "breakfast",
+              "items": [
+                {
+                  "name": "Eggs Scrambled or fried",
+                  "quantity": "100 غرام",
+                  "calories": 171.9,
+                  "protein_g": 10.2,
+                  "carbs_g": 0.8,
+                  "fat_g": 12.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Cheese",
+                  "quantity": "50 غرام",
+                  "calories": 53.3,
+                  "protein_g": 6.7,
+                  "carbs_g": 1.3,
+                  "fat_g": 2.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 340.5,
+              "total_protein_g": 19.9,
+              "total_carbs_g": 5.1,
+              "total_fat_g": 24.9,
+              "swappable": []
+            },
+            {
+              "meal_type": "lunch",
+              "items": [
+                {
+                  "name": "Chicken livers, fried",
+                  "quantity": "150 غرام",
+                  "calories": 210.0,
+                  "protein_g": 33.0,
+                  "carbs_g": 3.4,
+                  "fat_g": 21.0
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 325.3,
+              "total_protein_g": 36.0,
+              "total_carbs_g": 6.4,
+              "total_fat_g": 31.0,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Chicken livers, fried",
+                  "options": [
+                    {
+                      "name": "Corned beef",
+                      "quantity": "100 غرام",
+                      "calories": 217.65,
+                      "protein_g": 25.88,
+                      "carbs_g": 0.0,
+                      "fat_g": 11.76
+                    },
+                    {
+                      "name": "Corned beef hash Dried",
+                      "quantity": "100 غرام",
+                      "calories": 205.36,
+                      "protein_g": 33.93,
+                      "carbs_g": 0.0,
+                      "fat_g": 7.14
+                    },
+                    {
+                      "name": "Fish sticks fried",
+                      "quantity": "100 غرام",
+                      "calories": 178.57,
+                      "protein_g": 16.96,
+                      "carbs_g": 7.14,
+                      "fat_g": 8.93
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "dinner",
+              "items": [
+                {
+                  "name": "Crab meat",
+                  "quantity": "150 غرام",
+                  "calories": 158.8,
+                  "protein_g": 24.7,
+                  "carbs_g": 1.8,
+                  "fat_g": 3.5
+                },
+                {
+                  "name": "Spinach",
+                  "quantity": "100 غرام",
+                  "calories": 26.0,
+                  "protein_g": 3.0,
+                  "carbs_g": 3.0,
+                  "fat_g": 0.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "5 غرام",
+                  "calories": 44.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 5.0
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "10 غرام",
+                  "calories": 89.3,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 10.0
+                }
+              ],
+              "total_calories": 318.7,
+              "total_protein_g": 27.7,
+              "total_carbs_g": 4.8,
+              "total_fat_g": 18.5,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "Crab meat",
+                  "options": [
+                    {
+                      "name": "Chicken livers, fried",
+                      "quantity": "100 غرام",
+                      "calories": 140.0,
+                      "protein_g": 22.0,
+                      "carbs_g": 2.3,
+                      "fat_g": 14.0
+                    },
+                    {
+                      "name": "Corned beef hash canned",
+                      "quantity": "100 غرام",
+                      "calories": 141.18,
+                      "protein_g": 14.12,
+                      "carbs_g": 7.06,
+                      "fat_g": 9.41
+                    },
+                    {
+                      "name": "Eggs raw",
+                      "quantity": "100 غرام",
+                      "calories": 150.0,
+                      "protein_g": 12.0,
+                      "carbs_g": 0.0,
+                      "fat_g": 12.0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "meal_type": "snack",
+              "items": [
+                {
+                  "name": "skim. milk",
+                  "quantity": "200 غرام",
+                  "calories": 102.4,
+                  "protein_g": 14.4,
+                  "carbs_g": 10.4,
+                  "fat_g": 3.2
+                },
+                {
+                  "name": "Walnuts",
+                  "quantity": "10 غرام",
+                  "calories": 65.0,
+                  "protein_g": 1.4,
+                  "carbs_g": 1.6,
+                  "fat_g": 6.4
+                },
+                {
+                  "name": "Olive oil",
+                  "quantity": "20 غرام",
+                  "calories": 178.6,
+                  "protein_g": 0.0,
+                  "carbs_g": 0.0,
+                  "fat_g": 20.0
+                }
+              ],
+              "total_calories": 346.0,
+              "total_protein_g": 15.8,
+              "total_carbs_g": 12.0,
+              "total_fat_g": 29.6,
+              "swappable": [
+                {
+                  "component": "protein",
+                  "current_item": "skim. milk",
+                  "options": [
+                    {
+                      "name": "Cheese",
+                      "quantity": "100 غرام",
+                      "calories": 106.67,
+                      "protein_g": 13.33,
+                      "carbs_g": 2.67,
+                      "fat_g": 4.89
+                    },
+                    {
+                      "name": "Crab meat",
+                      "quantity": "100 غرام",
+                      "calories": 105.88,
+                      "protein_g": 16.47,
+                      "carbs_g": 1.18,
+                      "fat_g": 2.35
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "total_calories": 1330.5,
+          "total_protein_g": 99.4,
+          "total_carbs_g": 28.3,
+          "total_fat_g": 104.0,
+          "calories_deviation": -94.8
+        }
+      ]
+    }
+  ],
+  "disclaimer": "هذه الخطة مولدة آلياً ومعدلة وفق بياناتك الصحية المُدخلة، لكنها لا تغني عن استشارة طبيب أو أخصائي تغذية."
+}

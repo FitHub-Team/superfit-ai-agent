@@ -3,5 +3,4 @@ __pycache__/
 *.pyc
 .env
 .vscode/
-app/data/superfit.db
 scripts/sample_*.json

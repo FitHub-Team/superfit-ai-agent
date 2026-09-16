@@ -1,0 +1,358 @@
+{
+  "status": "success",
+  "duration_weeks": 2,
+  "applied_split": {
+    "split_id": "3day_ppl",
+    "name": "دفع - سحب - أرجل",
+    "description": "التقسيم الكلاسيكي — كل عضلة مرة أسبوعياً بجلسة مركزة",
+    "layout": [
+      "push",
+      "rest",
+      "pull",
+      "rest",
+      "legs",
+      "rest",
+      "rest"
+    ]
+  },
+  "alternative_splits": [
+    {
+      "split_id": "3day_muscle",
+      "name": "عضلة لكل يوم",
+      "description": "تركيز كامل على عضلة واحدة كل جلسة",
+      "layout": [
+        "chest_triceps",
+        "rest",
+        "back_biceps",
+        "rest",
+        "legs_abs",
+        "rest",
+        "rest"
+      ]
+    }
+  ],
+  "summary": {
+    "goal": "lose_fat",
+    "target_calories": 0.0,
+    "protein_g": 0,
+    "carbs_g": 0,
+    "fats_g": 0,
+    "training_days_per_week": 3
+  },
+  "medical_detected": [],
+  "weeks": [
+    {
+      "week_number": 1,
+      "days": [
+        {
+          "day_number": 1,
+          "is_rest": false,
+          "session": {
+            "focus": "push",
+            "exercises": [
+              {
+                "name": "Push-Up Wide",
+                "target_muscle": "Chest",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Close-Hands Push-Up",
+                "target_muscle": "Chest",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "10-12",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Seated Front Deltoid",
+                "target_muscle": "Shoulders",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Overhead Triceps",
+                "target_muscle": "Triceps",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              }
+            ]
+          }
+        },
+        {
+          "day_number": 2,
+          "is_rest": true,
+          "session": null
+        },
+        {
+          "day_number": 3,
+          "is_rest": false,
+          "session": {
+            "focus": "pull",
+            "exercises": [
+              {
+                "name": "Pull-up",
+                "target_muscle": "Lats",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Wide-Grip Rear Pull-Up",
+                "target_muscle": "Lats",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Partner Superman with alternating high-five",
+                "target_muscle": "Lower Back",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Hyperextensions With No Hyperextension Bench",
+                "target_muscle": "Lower Back",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Seated Biceps",
+                "target_muscle": "Biceps",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              }
+            ]
+          }
+        },
+        {
+          "day_number": 4,
+          "is_rest": true,
+          "session": null
+        },
+        {
+          "day_number": 5,
+          "is_rest": false,
+          "session": {
+            "focus": "legs",
+            "exercises": [
+              {
+                "name": "Reverse Burpee",
+                "target_muscle": "Quadriceps",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Natural Glute Ham Raise",
+                "target_muscle": "Hamstrings",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Glute Kickback",
+                "target_muscle": "Glutes",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Knee Circles",
+                "target_muscle": "Calves",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              }
+            ]
+          }
+        },
+        {
+          "day_number": 6,
+          "is_rest": true,
+          "session": null
+        },
+        {
+          "day_number": 7,
+          "is_rest": true,
+          "session": null
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "days": [
+        {
+          "day_number": 1,
+          "is_rest": false,
+          "session": {
+            "focus": "push",
+            "exercises": [
+              {
+                "name": "Push-Up Wide",
+                "target_muscle": "Chest",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Close-Hands Push-Up",
+                "target_muscle": "Chest",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "10-12",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Seated Front Deltoid",
+                "target_muscle": "Shoulders",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Overhead Triceps",
+                "target_muscle": "Triceps",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              }
+            ]
+          }
+        },
+        {
+          "day_number": 2,
+          "is_rest": true,
+          "session": null
+        },
+        {
+          "day_number": 3,
+          "is_rest": false,
+          "session": {
+            "focus": "pull",
+            "exercises": [
+              {
+                "name": "Pull-up",
+                "target_muscle": "Lats",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Wide-Grip Rear Pull-Up",
+                "target_muscle": "Lats",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Partner Superman with alternating high-five",
+                "target_muscle": "Lower Back",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Hyperextensions With No Hyperextension Bench",
+                "target_muscle": "Lower Back",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Seated Biceps",
+                "target_muscle": "Biceps",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              }
+            ]
+          }
+        },
+        {
+          "day_number": 4,
+          "is_rest": true,
+          "session": null
+        },
+        {
+          "day_number": 5,
+          "is_rest": false,
+          "session": {
+            "focus": "legs",
+            "exercises": [
+              {
+                "name": "Reverse Burpee",
+                "target_muscle": "Quadriceps",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Natural Glute Ham Raise",
+                "target_muscle": "Hamstrings",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "12-15",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Glute Kickback",
+                "target_muscle": "Glutes",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              },
+              {
+                "name": "Knee Circles",
+                "target_muscle": "Calves",
+                "equipment": "Body Only",
+                "sets": 3,
+                "reps": "15-20",
+                "rest_seconds": 30
+              }
+            ]
+          }
+        },
+        {
+          "day_number": 6,
+          "is_rest": true,
+          "session": null
+        },
+        {
+          "day_number": 7,
+          "is_rest": true,
+          "session": null
+        }
+      ]
+    }
+  ],
+  "disclaimer": "هذه الخطة مولدة آلياً وفق مستواك ومعداتك وإصاباتك المُدخلة، لكنها لا تغني عن استشارة مدرب مؤهل — ابدأ بأوزان خفيفة وتدرج بأمان."
+}
