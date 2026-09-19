@@ -2,7 +2,6 @@ venv/
 __pycache__/
 *.pyc
 .env
-app/data/superfit.db
 .git/
 *.md
 scripts/sample_*.json
