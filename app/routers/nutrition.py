@@ -1,6 +1,6 @@
 # ==========================================
-# Endpoint التغذية — الخط الكامل:
-# أمان → عقد طلب → حسابات → حماية طبية → توليد → إثراء → عقد رد
+# Endpoint التغذية — v2
+# الجديد: duration_weeks=1 + variation_hint تمرير
 # ==========================================
 
 import re
@@ -8,7 +8,6 @@ import sqlite3
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.core.security import verify_api_key
-from app.core.llm_factory import create_llm
 from app.schemas.api import (
     NutritionPlanRequest,
     NutritionPlanAPIResponse,
@@ -35,19 +34,17 @@ router = APIRouter(prefix="/generate", dependencies=[Depends(verify_api_key)])
 
 @router.post("/nutrition-plan", response_model=NutritionPlanAPIResponse)
 def generate_nutrition_plan(req: NutritionPlanRequest):
-    # ===== 1) الحسابات (بأرقام نظيفة) =====
+    # ===== 1) الحسابات =====
     user_like = type("U", (), {
         "age": req.age, "weight_kg": req.weight_kg,
         "height_cm": req.height_cm, "gender": req.gender,
         "activity_level": req.activity_level,
     })()
-
     bmr = float(calculate_bmr(user_like))
     tdee = float(calculate_tdee(user_like))
     target = float(calculate_target_calories(tdee, req.goal, req.pace))
     macros = calculate_macros(float(req.weight_kg), target)
 
-    # ===== تحصين صريح: فرض أرقام =====
     protein_g = float(macros["protein_g"])
     carbs_g = float(macros["carbs_g"])
     fats_g = float(macros["fats_g"])
@@ -66,7 +63,7 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
 
     medical_instructions = build_medical_instructions(rules)
 
-    # ===== 3) التوليد (أسبوعين) =====
+    # ===== 3) التوليد (أسبوع واحد — مع تلميح التنويع) =====
     try:
         week1 = generate_nutrition_week(
             target_calories=target, protein_g=protein_g,
@@ -75,14 +72,7 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
             allergies=req.allergies,
             medical_conditions=req.medical_conditions,
             available_foods=safe_foods,
-        )
-        week2 = generate_nutrition_week(
-            target_calories=target, protein_g=protein_g,
-            carbs_g=carbs_g, fat_g=fats_g,
-            meals_per_day=req.meals_per_day,
-            allergies=req.allergies,
-            medical_conditions=req.medical_conditions,
-            available_foods=safe_foods,
+            variation_hint=req.variation_hint,   # 🔄 التلميح الجديد
         )
     except RuntimeError as e:
         raise HTTPException(status_code=503, detail=f"تعذر توليد الخطة: {e}")
@@ -99,7 +89,7 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
         filler = _pick_filler(conn, allergies_low, medical_keywords)
 
         enriched_weeks = []
-        for w in (week1, week2):
+        for w in (week1,):
             enriched_days = []
             for day in w.days:
                 enriched_meals = []
@@ -177,7 +167,7 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
 
     return NutritionPlanAPIResponse(
         status="success",
-        duration_weeks=2,
+        duration_weeks=1,
         summary=PlanSummary(
             goal=req.goal,
             target_calories=round(target, 1),
@@ -188,6 +178,7 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
         ),
         medical_detected=[r.name_ar for r in rules],
         foods_excluded_count=excluded_count,
+        variation_applied=req.variation_hint,   # 🔄 إرجاع التلميح المطبق
         weeks=enriched_weeks,
     )
 

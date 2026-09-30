@@ -1,36 +1,29 @@
 # ==========================================
-# عقد طبقة الـ API — التمارين
-# الطلب الوارد من Laravel + الرد النهائي المُثرى
+# عقد طبقة الـ API — التمارين (v2)
+# الجديد: variation_hint
 # ==========================================
 
 from pydantic import BaseModel, Field
 from typing import Literal, Optional, List
-from app.schemas.plan import LLMWorkoutWeek, PlanSummary, SplitOption
+from app.schemas.plan import LLMWorkoutWeek, PlanSummary
 
 
-# ==========================================
-# الطلب الوارد
-# ==========================================
 class WorkoutPlanRequest(BaseModel):
     user_level: Literal["beginner", "intermediate", "advanced"] = "beginner"
     goal: Literal["lose_fat", "build_muscle", "maintain"] = "maintain"
     training_days_per_week: int = Field(default=4, ge=2, le=6)
-    split_id: Optional[str] = Field(
-        default=None,
-        description="اختياري — إذا ما بعتوه، منعرض الخيارات المتاحة أو نختار تلقائياً"
-    )
+    split_id: Optional[str] = None
     available_equipment: List[str] = Field(
-        default_factory=lambda: ["Body Only"],
-        description="مثال: [\"Body Only\", \"Dumbbell\", \"Barbell\"]"
+        default_factory=lambda: ["Body Only"]
     )
     medical_restrictions: List[str] = Field(default_factory=list)
     height_cm: Optional[float] = Field(default=None, gt=0, le=280)
     weight_kg: Optional[float] = Field(default=None, gt=0, le=500)
 
+    # 🔄 تلميح التنويع (اختياري)
+    variation_hint: Optional[Literal["same_as_previous", "new_variety"]] = None
 
-# ==========================================
-# خيار التقسيم (يُعرض للمستخدم للتبديل)
-# ==========================================
+
 class SplitOptionOut(BaseModel):
     split_id: str
     name: str
@@ -38,16 +31,14 @@ class SplitOptionOut(BaseModel):
     layout: List[str]
 
 
-# ==========================================
-# الرد النهائي
-# ==========================================
 class WorkoutPlanAPIResponse(BaseModel):
     status: Literal["success"]
-    duration_weeks: int = 2
+    duration_weeks: int = 1
     applied_split: SplitOptionOut
     alternative_splits: List[SplitOptionOut] = Field(default_factory=list)
     summary: PlanSummary
     medical_detected: List[str] = Field(default_factory=list)
+    variation_applied: Optional[str] = None
     weeks: List[LLMWorkoutWeek]
     disclaimer: str = (
         "هذه الخطة مولدة آلياً وفق مستواك ومعداتك وإصاباتك المُدخلة، "

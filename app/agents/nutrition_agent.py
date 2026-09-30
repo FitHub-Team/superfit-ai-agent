@@ -1,6 +1,7 @@
 # ==========================================
-# وكيل التغذية — إصدار Groq النهائي (v7)
-# التحسين: انتظار أطول عند 429 (60 ثانية بدل 20) — لأن TPM المجاني بحاجة استعادة أطول
+# وكيل التغذية — إصدار Groq النهائي (v8)
+# v8 الجديد: variation_hint — تلميح تنويع للخطط التالية
+#   - new_variety → تعليمة صريحة تجنب التكرار بالبرومبت
 # ==========================================
 
 import sys
@@ -55,6 +56,7 @@ def build_day_prompt(
     medical_instructions: str,
     available_foods: list[dict],
     variety_hint: str,
+    variation_note: str = "",
 ) -> str:
     foods_text = "\n".join(
         f"- {f['name']} | {f['calories_per_100g']} سعرة/100غ | "
@@ -64,6 +66,11 @@ def build_day_prompt(
     )
 
     allergies_text = ", ".join(allergies) if allergies else "لا شيء"
+
+    variation_block = f"""
+## ملاحظة تنويع خاصة:
+{variation_note}
+""" if variation_note else ""
 
     return f"""أنت خبير تغذية رياضية وعلاج غذائي طبي محترف. مهمتك بناء وجبات يوم واحد فقط.
 
@@ -81,7 +88,7 @@ def build_day_prompt(
 ## الحالات الصحية الخاصة — تعامل بصرامة طبية:
 {medical_instructions}
 - إن لم تكن متأكداً من ملاءمة صنف، لا تختاره — اختر بديلاً آمناً من القائمة
-
+{variation_block}
 ## الأطعمة المتاحة فقط (اختر منها — ممنوع أي طعام خارج القائمة، القائمة معدلة طبياً):
 {foods_text}
 
@@ -126,15 +133,16 @@ def generate_nutrition_day(
     available_foods: list[dict],
     variety_hint: str,
     llm,
-    max_tries: int = 5,         # زيادة المحاولات من 3 إلى 5
-    wait_on_429: int = 60,      # الانتظار عند 429 (60 ثانية بدل 20)
+    variation_note: str = "",
+    max_tries: int = 5,
+    wait_on_429: int = 60,
 ) -> dict:
-    """يولد يوماً واحداً — مع إعادة محاولة ذكية وصبورة"""
+    """يولد يوماً واحداً — مع إعادة محاولة ذكية لكل نوع فشل"""
 
     prompt = build_day_prompt(
         day_number, target_calories, protein_g, carbs_g, fat_g,
         meals_per_day, allergies, medical_instructions,
-        available_foods, variety_hint,
+        available_foods, variety_hint, variation_note,
     )
 
     last_error = None
@@ -162,7 +170,7 @@ def generate_nutrition_day(
         except Exception as e:
             last_error = str(e)[:150]
             if "429" in last_error or "rate" in last_error.lower():
-                print(f"    ⏳ حد المعدل — انتظار {wait_on_429} ثانية...")
+                print(f"    ⏳ حد المعدل — انتظار 60 ثانية...")
                 time.sleep(wait_on_429)
             elif "413" in last_error or "too large" in last_error.lower():
                 print("    ⏳ الطلب أكبر من السقف — انتظار 30 ثانية...")
@@ -185,9 +193,11 @@ def generate_nutrition_week(
     allergies: list[str] = None,
     medical_conditions: list[str] = None,
     available_foods: list[dict] = None,
+    variation_hint: str = None,     # 🔄 الجديد: "new_variety" أو None
 ) -> LLMNutritionWeek:
     """
-    يولد أسبوعاً آمناً طبياً — أسبوع واحد فقط (يستدعيه الـ endpoint مرتين)
+    يولد أسبوعاً آمناً طبياً:
+    - variation_hint="new_variety" → تعليمة صريحة بتجنب تكرار الخطة السابقة
     """
     allergies = allergies or []
     medical_conditions = medical_conditions or []
@@ -211,6 +221,17 @@ def generate_nutrition_week(
     medical_instructions = build_medical_instructions(rules)
 
     llm = create_llm()
+
+    # 🔄 ملاحظة التنويع الخاصة — تصل للبرومبت لكل يوم
+    variation_note = ""
+    if variation_hint == "new_variety":
+        variation_note = (
+            "⚠️ هذه خطة تالية لمستخدم سبق أن تلقى خطة مشابهة — "
+            "التزم بأكبر قدر من الابتكار: "
+            "غيّر مصادر البروتين والكارب والخضار عن الخطة السابقة، "
+            "وابتكر تركيبات وجبات مختلفة تماماً من نفس قائمة الأطعمة المتاحة."
+        )
+        print("  🔄 تفعيل وضع التنويع: new_variety")
 
     variety_hints = [
         "ركّز على مصادر بروتين مختلفة، وابدأ الأسبوع بوجبات كلاسيكية متوازنة",
@@ -237,8 +258,7 @@ def generate_nutrition_week(
             available_foods=available_foods,
             variety_hint=variety_hints[(day_num - 1) % len(variety_hints)],
             llm=llm,
-            max_tries=5,
-            wait_on_429=60,  # الانتظار الذكي الجديد
+            variation_note=variation_note,
         )
         days.append(day_data)
         total_cal = sum(i["calories"] for m in day_data["meals"] for i in m["items"])

@@ -1,6 +1,7 @@
 # ==========================================
 # عقد طبقة الـ API — الشكل الموحد مع Laravel
 # الطلب (Request) والرد النهائي المُثرى (Enriched)
+# v2: إضافة variation_hint للتنويع
 # ==========================================
 
 from pydantic import BaseModel, Field
@@ -15,7 +16,7 @@ from app.schemas.plan import (
 
 
 # ==========================================
-# الطلب الوارد من Laravel
+# الطلب الوارد من Laravel — التغذية
 # ==========================================
 class NutritionPlanRequest(BaseModel):
     # بيانات جسدية
@@ -35,6 +36,11 @@ class NutritionPlanRequest(BaseModel):
     # قيود صحية (نص حر — يُكشف تلقائياً)
     allergies: List[str] = Field(default_factory=list)
     medical_conditions: List[str] = Field(default_factory=list)
+
+    # 🔄 تلميح التنويع (اختياري):
+    # same_as_previous → الخطة السابقة نفسها (الباك يعيد من مخزنه غالباً)
+    # new_variety      → خطة بديلة — الـ LLM يبتكر تركيبات مختلفة
+    variation_hint: Optional[Literal["same_as_previous", "new_variety"]] = None
 
 
 # ==========================================
@@ -74,10 +80,11 @@ class EnrichedWeek(BaseModel):
 
 class NutritionPlanAPIResponse(BaseModel):
     status: Literal["success"]
-    duration_weeks: int = 2
+    duration_weeks: int = 1
     summary: PlanSummary
     medical_detected: List[str] = Field(default_factory=list)  # حالات كشفناها
     foods_excluded_count: int = 0                              # كم أطعمة افترت الطبقة الطبية
+    variation_applied: Optional[str] = None                    # 🔄 التلميح المطبق
     weeks: List[EnrichedWeek]
     disclaimer: str = (
         "هذه الخطة مولدة آلياً ومعدلة وفق بياناتك الصحية المُدخلة، "

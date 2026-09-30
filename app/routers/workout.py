@@ -1,6 +1,6 @@
 # ==========================================
-# Endpoint التمارين — الخط الكامل:
-# أمان → عقد طلب → اختيار تقسيم → توليد أسبوعين → عقد رد
+# Endpoint التمارين — v2
+# الجديد: variation_hint + duration_weeks=1
 # ==========================================
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -29,11 +29,9 @@ def generate_workout_plan(req: WorkoutPlanRequest):
                    f"المتاح: 2-6 أيام أسبوعياً"
         )
 
-    # التقسيم المطبق: المحدد بالـ split_id أو الأول المتاح
     if req.split_id:
         try:
             applied = get_split(req.split_id)
-            # تحقق: هل التقسيم المحدد يتطابق مع عدد الأيام؟
             actual_days = sum(1 for d in applied.layout if d != "rest")
             if actual_days != req.training_days_per_week:
                 raise HTTPException(
@@ -43,22 +41,15 @@ def generate_workout_plan(req: WorkoutPlanRequest):
         except ValueError:
             raise HTTPException(status_code=404, detail=f"تقسيم غير موجود: {req.split_id}")
     else:
-        applied = available_splits[0]  # الافتراضي الأول
+        applied = available_splits[0]
 
     alternatives = [s for s in available_splits if s.split_id != applied.split_id]
 
-    print(f"🏋️ التقسيم المطبق: {applied.name} | بدائل متاحة: {len(alternatives)}")
+    print(f"🏋️ التقسيم المطبق: {applied.name} | بدائل: {len(alternatives)} | تنويع: {req.variation_hint}")
 
-    # ===== 2) التوليد (أسبوعين — نفس الوكيل مرتين) =====
+    # ===== 2) التوليد (أسبوع واحد — مع تلميح التنويع) =====
     try:
         week1 = generate_workout_week(
-            split_id=applied.split_id,
-            user_level=req.user_level,
-            goal=req.goal,
-            medical_restrictions=req.medical_restrictions,
-            available_equipment=req.available_equipment,
-        )
-        week2 = generate_workout_week(
             split_id=applied.split_id,
             user_level=req.user_level,
             goal=req.goal,
@@ -82,7 +73,6 @@ def generate_workout_plan(req: WorkoutPlanRequest):
         ) for s in alternatives
     ]
 
-    # ملخص مبدئي — بيتحسن لاحقاً بربط calories ببيانات التغذية إن توفرت
     summary = PlanSummary(
         goal=req.goal,
         target_calories=0,
@@ -90,15 +80,13 @@ def generate_workout_plan(req: WorkoutPlanRequest):
         training_days_per_week=req.training_days_per_week,
     )
 
-    # إصلاح week_number للأسبوع الثاني (الوكيل دائماً يرجع 1)
-    week2.week_number = 2
-
     return WorkoutPlanAPIResponse(
         status="success",
-        duration_weeks=2,
+        duration_weeks=1,
         applied_split=applied_out,
         alternative_splits=alt_out,
         summary=summary,
-        medical_detected=[],  # التمارين مو مربوطة بالحالات الطبية مباشرة — الفلترة حدثت داخلياً
-        weeks=[week1, week2],
+        medical_detected=[],
+        variation_applied=req.variation_hint,   # 🔄
+        weeks=[week1],
     )

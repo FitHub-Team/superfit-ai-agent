@@ -1,8 +1,8 @@
 # ==========================================
-# وكيل التمارين — v3 (فوق أدوات app/tools)
+# وكيل التمارين — v3 (فوق أدوات app/tools + variation_hint)
 # الكود: التقسيم بالكتالوج + الأداة تفتري التمارين الآمنة
 # الموديل: يختار ويرتب (sets/reps/rest) من القائمة الآمنة
-# لا SQL مباشر داخل الوكيل — كل القراءة عبر exercise_tools
+# الجديد: variation_hint — "new_variety" يضيف تعليمة تنويع صريحة
 # ==========================================
 
 import sys
@@ -31,6 +31,7 @@ def build_session_prompt(
     user_level: str,
     goal: str,
     available_exercises: list[dict],
+    variation_note: str = "",
 ) -> str:
     exercises_text = "\n".join(
         f"- {ex['title']} | عضلة: {ex['body_part']} | جهاز: {ex['equipment']} | مستوى: {ex['level']}"
@@ -70,7 +71,10 @@ def build_session_prompt(
 3. ضع لكل تمرين: sets (1-5)، reps (مثال: 8-12 أو 12-15)، rest_seconds (30-120)
 4. غطِّ كل العضلات المستهدفة المذكورة أعلاه
 5. أجب بـ JSON فقط — بدون أي كلام قبله أو بعده
-
+{f'''
+## ملاحظة تنويع:
+{variation_note}
+''' if variation_note else ''}
 ## شكل الـ JSON المطلوب بالضبط:
 {{
   "focus": "{focus}",
@@ -92,10 +96,14 @@ def generate_session(
     goal: str,
     available_exercises: list[dict],
     llm,
+    variation_note: str = "",
 ) -> dict:
     """يولد جلسة واحدة — مع إعادة محاولة ذكية"""
 
-    prompt = build_session_prompt(focus, focus_muscles, user_level, goal, available_exercises)
+    prompt = build_session_prompt(
+        focus, focus_muscles, user_level, goal,
+        available_exercises, variation_note,
+    )
 
     last_error = None
     for attempt in range(1, 4):
@@ -145,6 +153,7 @@ def generate_workout_week(
     goal: str = "maintain",
     medical_restrictions: list[str] = None,
     available_equipment: list[str] = None,
+    variation_hint: str = None,        # 🔄 الجديد
 ) -> LLMWorkoutWeek:
     """
     يولد أسبوعاً تدريبياً كاملاً — كل القراءات عبر exercise_tools:
@@ -152,12 +161,24 @@ def generate_workout_week(
     2) لكل جلسة: الأداة تفتري التمارين الآمنة (عضلات/مستوى/معدات/إصابات)
     3) الموديل يختار ويرتب التفاصيل
     4) تجميع الأسبوع والتحقق من العقد
+
+    variation_hint="new_variety" → تعليمة صريحة بتنويع التمارين عن الخطة السابقة
     """
     medical_restrictions = medical_restrictions or []
     available_equipment = available_equipment or ["Body Only"]
 
     split = get_split(split_id)
     print(f"  🗓️ التقسيم المعتمد: {split.name}")
+
+    # 🔄 ملاحظة التنويع
+    variation_note = ""
+    if variation_hint == "new_variety":
+        variation_note = (
+            "⚠️ هذه خطة تالية لمستخدم سبق أن تلقى خطة مشابهة — "
+            "ابتكر اختيارات تمارين مختلفة عن الخطة السابقة قدر الإمكان، "
+            "مع الحفاظ على تغطية نفس العضلات المستهدفة."
+        )
+        print("  🔄 تفعيل وضع التنويع: new_variety")
 
     llm = create_llm()
     days = []
@@ -222,6 +243,7 @@ def generate_workout_week(
         session_data = generate_session(
             focus, focus_muscles, user_level, goal,
             safe_exercises, llm,
+            variation_note=variation_note,   # 🔄 التمرير
         )
 
         days.append({"day_number": day_num, "is_rest": False, "session": session_data})
