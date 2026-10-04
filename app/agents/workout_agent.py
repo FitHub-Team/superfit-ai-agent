@@ -1,8 +1,9 @@
 # ==========================================
-# وكيل التمارين — v3 (فوق أدوات app/tools + variation_hint)
+# وكيل التمارين — v4 (فوق أدوات app/tools)
+# الجديد: partner_available — يستقبلها من الـ endpoint
+#         ويمررها للأداة search_exercises (فلتر الشراكة)
 # الكود: التقسيم بالكتالوج + الأداة تفتري التمارين الآمنة
 # الموديل: يختار ويرتب (sets/reps/rest) من القائمة الآمنة
-# الجديد: variation_hint — "new_variety" يضيف تعليمة تنويع صريحة
 # ==========================================
 
 import sys
@@ -153,16 +154,17 @@ def generate_workout_week(
     goal: str = "maintain",
     medical_restrictions: list[str] = None,
     available_equipment: list[str] = None,
-    variation_hint: str = None,        # 🔄 الجديد
+    variation_hint: str = None,
+    partner_available: bool = True,        # 🆕 فلتر الشراكة
 ) -> LLMWorkoutWeek:
     """
     يولد أسبوعاً تدريبياً كاملاً — كل القراءات عبر exercise_tools:
     1) الكتالوج يحدد خريطة الأسبوع
-    2) لكل جلسة: الأداة تفتري التمارين الآمنة (عضلات/مستوى/معدات/إصابات)
+    2) لكل جلسة: الأداة تفتري التمارين الآمنة (عضلات/مستوى/معدات/إصابات/شراكة)
     3) الموديل يختار ويرتب التفاصيل
     4) تجميع الأسبوع والتحقق من العقد
 
-    variation_hint="new_variety" → تعليمة صريحة بتنويع التمارين عن الخطة السابقة
+    partner_available=False → يستبعد تمارين الشراكة (المستخدم فردي)
     """
     medical_restrictions = medical_restrictions or []
     available_equipment = available_equipment or ["Body Only"]
@@ -201,13 +203,14 @@ def generate_workout_week(
         }
         allowed_levels = level_scope.get(user_level.lower(), ["Beginner", "Intermediate"])
 
-        # ✅ الأداة تفعل الفلترة كاملة (عضلات/مستوى/معدات/مفاصل)
+        # ✅ الأداة تفعل الفلترة كاملة (عضلات/مستوى/معدات/مفاصل/شراكة)
         safe_exercises = search_exercises(
             body_parts=focus_muscles,
             allowed_levels=allowed_levels,
             available_equipment=available_equipment,
             medical_restrictions=medical_restrictions,
             limit=40,
+            partner_available=partner_available,   # 🆕 فلتر الشراكة
         )
         print(f"    🏋️ يوم {day_num}: جلسة {focus} — {len(safe_exercises)} تمرين آمن متاح")
 
@@ -220,6 +223,7 @@ def generate_workout_week(
                 available_equipment=available_equipment,
                 medical_restrictions=medical_restrictions,
                 limit=40,
+                partner_available=partner_available,   # 🆕
             )
 
         # تقليص ذكي — تنويع بالأجهزة (منطق الوكيل، فوق نتيجة الأداة)
@@ -243,7 +247,7 @@ def generate_workout_week(
         session_data = generate_session(
             focus, focus_muscles, user_level, goal,
             safe_exercises, llm,
-            variation_note=variation_note,   # 🔄 التمرير
+            variation_note=variation_note,
         )
 
         days.append({"day_number": day_num, "is_rest": False, "session": session_data})

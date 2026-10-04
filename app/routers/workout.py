@@ -1,6 +1,7 @@
 # ==========================================
-# Endpoint التمارين — v2
-# الجديد: variation_hint + duration_weeks=1
+# Endpoint التمارين — v3
+# الجديد: partner_available — فلتر الشراكة
+# variation_hint + duration_weeks=1 (من v2)
 # ==========================================
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -45,9 +46,9 @@ def generate_workout_plan(req: WorkoutPlanRequest):
 
     alternatives = [s for s in available_splits if s.split_id != applied.split_id]
 
-    print(f"🏋️ التقسيم المطبق: {applied.name} | بدائل: {len(alternatives)} | تنويع: {req.variation_hint}")
+    print(f"🏋️ التقسيم: {applied.name} | شراكة: {req.partner_available} | تنويع: {req.variation_hint}")
 
-    # ===== 2) التوليد (أسبوع واحد — مع تلميح التنويع) =====
+    # ===== 2) التوليد (أسبوع واحد — بكل الفلاتر) =====
     try:
         week1 = generate_workout_week(
             split_id=applied.split_id,
@@ -55,6 +56,7 @@ def generate_workout_plan(req: WorkoutPlanRequest):
             goal=req.goal,
             medical_restrictions=req.medical_restrictions,
             available_equipment=req.available_equipment,
+            partner_available=req.partner_available,   # 🆕
         )
     except RuntimeError as e:
         raise HTTPException(status_code=503, detail=f"تعذر توليد الخطة: {e}")
@@ -87,6 +89,6 @@ def generate_workout_plan(req: WorkoutPlanRequest):
         alternative_splits=alt_out,
         summary=summary,
         medical_detected=[],
-        variation_applied=req.variation_hint,   # 🔄
+        variation_applied=req.variation_hint,
         weeks=[week1],
     )

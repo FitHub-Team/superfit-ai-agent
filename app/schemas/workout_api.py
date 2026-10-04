@@ -1,6 +1,6 @@
 # ==========================================
-# عقد طبقة الـ API — التمارين (v2)
-# الجديد: variation_hint
+# عقد طبقة الـ API — التمارين (v3)
+# الجديد: partner_available — فلتر الشراكة
 # ==========================================
 
 from pydantic import BaseModel, Field
@@ -20,7 +20,13 @@ class WorkoutPlanRequest(BaseModel):
     height_cm: Optional[float] = Field(default=None, gt=0, le=280)
     weight_kg: Optional[float] = Field(default=None, gt=0, le=500)
 
-    # 🔄 تلميح التنويع (اختياري)
+    # 🆕 فلتر الشراكة — إذا False: يستبعد تمارين "Partner"
+    partner_available: bool = Field(
+        default=True,
+        description="هل المستخدم عنده شريك تدريب؟ False = يستبعد تمارين الشراكة"
+    )
+
+    # 🔄 تلميح التنويع
     variation_hint: Optional[Literal["same_as_previous", "new_variety"]] = None
 
 

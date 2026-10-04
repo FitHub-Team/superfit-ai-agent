@@ -1,5 +1,6 @@
 # ==========================================
 # أدوات التمارين — بوابة موحدة لجدول exercises
+# v3: فلتر الشراكة (Partner) — يستبعد تمارين الشريك للفرديين
 # الفلترة الطبية للمفاصل مدموجة — أي استدعاء = نتيجة آمنة
 # ==========================================
 
@@ -51,12 +52,19 @@ def _is_blocked_for_joints(exercise: dict, joints: set[str]) -> bool:
     return False
 
 
+def _is_partner_exercise(exercise: dict) -> bool:
+    """🆕 يفحص إذا التمرين يتطلب شريك تدريب — يُستبعد للفرديين"""
+    title = str(exercise.get("title", "")).lower()
+    return "partner" in title or "with partner" in title
+
+
 def search_exercises(
     body_parts: Optional[list[str]] = None,
     allowed_levels: Optional[list[str]] = None,
     available_equipment: Optional[list[str]] = None,
     medical_restrictions: Optional[list[str]] = None,
     exercise_type: Optional[str] = None,
+    partner_available: bool = True,     # 🆕
     limit: int = 30,
     db_path: str = "app/data/superfit.db",
     conn=None,
@@ -68,6 +76,7 @@ def search_exercises(
       available_equipment   → معدات المستخدم (Body Only متاح دائماً)
       medical_restrictions  → نصوص إصابات → فلترة مفاصل تلقائية
       exercise_type         → Strength / Cardio / ...
+      partner_available     → False = يستبعد تمارين الشراكة (للفرديين)
     """
     close_conn = False
     if conn is None:
@@ -122,6 +131,10 @@ def search_exercises(
         joints = _stressed_joints_from(medical_restrictions)
         if joints:
             exercises = [ex for ex in exercises if not _is_blocked_for_joints(ex, joints)]
+
+        # 3) 🆕 فلتر الشراكة — يستبعد تمارين الشريك للفرديين
+        if not partner_available:
+            exercises = [ex for ex in exercises if not _is_partner_exercise(ex)]
 
         return exercises[:limit]
 
