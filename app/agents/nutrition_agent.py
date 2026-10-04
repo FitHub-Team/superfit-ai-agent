@@ -1,7 +1,9 @@
 # ==========================================
-# وكيل التغذية — إصدار Groq النهائي (v8)
-# v8 الجديد: variation_hint — تلميح تنويع للخطط التالية
-#   - new_variety → تعليمة صريحة تجنب التكرار بالبرومبت
+# وكيل التغذية — إصدار Groq النهائي (v10 — خفيف)
+# الجديد: تقليص الحمل بجولة واحدة — يشتغل بالحد المجاني
+# - القائمة: 15 غذا (مو 25)
+# - حذف متنوع التكرار (variety_note / variation_block)
+# - برمبت مبسّط — نفس المخرج
 # ==========================================
 
 import sys
@@ -26,8 +28,8 @@ from app.tools.food_tools import search_foods
 load_dotenv()
 
 
-def slim_food_list(available_foods: list[dict], max_foods: int = 25) -> list[dict]:
-    """يحافظ على تنويع الفئات مع تقليص الحجم"""
+def slim_food_list(available_foods: list[dict], max_foods: int = 15) -> list[dict]:
+    """يحافظ على تنويع الفئات مع تقليص الحجم — برومبت أخف = ضمن الحدود"""
     if len(available_foods) <= max_foods:
         return available_foods
 
@@ -56,7 +58,6 @@ def build_day_prompt(
     medical_instructions: str,
     available_foods: list[dict],
     variety_hint: str,
-    variation_note: str = "",
 ) -> str:
     foods_text = "\n".join(
         f"- {f['name']} | {f['calories_per_100g']} سعرة/100غ | "
@@ -66,11 +67,6 @@ def build_day_prompt(
     )
 
     allergies_text = ", ".join(allergies) if allergies else "لا شيء"
-
-    variation_block = f"""
-## ملاحظة تنويع خاصة:
-{variation_note}
-""" if variation_note else ""
 
     return f"""أنت خبير تغذية رياضية وعلاج غذائي طبي محترف. مهمتك بناء وجبات يوم واحد فقط.
 
@@ -88,7 +84,7 @@ def build_day_prompt(
 ## الحالات الصحية الخاصة — تعامل بصرامة طبية:
 {medical_instructions}
 - إن لم تكن متأكداً من ملاءمة صنف، لا تختاره — اختر بديلاً آمناً من القائمة
-{variation_block}
+
 ## الأطعمة المتاحة فقط (اختر منها — ممنوع أي طعام خارج القائمة، القائمة معدلة طبياً):
 {foods_text}
 
@@ -133,7 +129,6 @@ def generate_nutrition_day(
     available_foods: list[dict],
     variety_hint: str,
     llm,
-    variation_note: str = "",
     max_tries: int = 5,
     wait_on_429: int = 60,
 ) -> dict:
@@ -142,7 +137,7 @@ def generate_nutrition_day(
     prompt = build_day_prompt(
         day_number, target_calories, protein_g, carbs_g, fat_g,
         meals_per_day, allergies, medical_instructions,
-        available_foods, variety_hint, variation_note,
+        available_foods, variety_hint,
     )
 
     last_error = None
@@ -170,7 +165,7 @@ def generate_nutrition_day(
         except Exception as e:
             last_error = str(e)[:150]
             if "429" in last_error or "rate" in last_error.lower():
-                print(f"    ⏳ حد المعدل — انتظار 60 ثانية...")
+                print(f"    ⏳ حد المعدل — انتظار {wait_on_429} ثانية...")
                 time.sleep(wait_on_429)
             elif "413" in last_error or "too large" in last_error.lower():
                 print("    ⏳ الطلب أكبر من السقف — انتظار 30 ثانية...")
@@ -193,11 +188,9 @@ def generate_nutrition_week(
     allergies: list[str] = None,
     medical_conditions: list[str] = None,
     available_foods: list[dict] = None,
-    variation_hint: str = None,     # 🔄 الجديد: "new_variety" أو None
 ) -> LLMNutritionWeek:
     """
-    يولد أسبوعاً آمناً طبياً:
-    - variation_hint="new_variety" → تعليمة صريحة بتجنب تكرار الخطة السابقة
+    يولد أسبوعاً آمناً طبياً — خفيف وبالحصص المناسبة للحد المجاني
     """
     allergies = allergies or []
     medical_conditions = medical_conditions or []
@@ -216,22 +209,11 @@ def generate_nutrition_week(
         protein_g, carbs_g, fat_g = adjust_macros_for_medical(protein_g, carbs_g, fat_g, rules)
         print(f"  📊 ماكروز معدلة طبياً: بروتين {protein_g} / كارب {carbs_g} / دهون {fat_g}")
 
-    available_foods = slim_food_list(available_foods, max_foods=25)
+    available_foods = slim_food_list(available_foods, max_foods=15)
 
     medical_instructions = build_medical_instructions(rules)
 
     llm = create_llm()
-
-    # 🔄 ملاحظة التنويع الخاصة — تصل للبرومبت لكل يوم
-    variation_note = ""
-    if variation_hint == "new_variety":
-        variation_note = (
-            "⚠️ هذه خطة تالية لمستخدم سبق أن تلقى خطة مشابهة — "
-            "التزم بأكبر قدر من الابتكار: "
-            "غيّر مصادر البروتين والكارب والخضار عن الخطة السابقة، "
-            "وابتكر تركيبات وجبات مختلفة تماماً من نفس قائمة الأطعمة المتاحة."
-        )
-        print("  🔄 تفعيل وضع التنويع: new_variety")
 
     variety_hints = [
         "ركّز على مصادر بروتين مختلفة، وابدأ الأسبوع بوجبات كلاسيكية متوازنة",
@@ -258,7 +240,6 @@ def generate_nutrition_week(
             available_foods=available_foods,
             variety_hint=variety_hints[(day_num - 1) % len(variety_hints)],
             llm=llm,
-            variation_note=variation_note,
         )
         days.append(day_data)
         total_cal = sum(i["calories"] for m in day_data["meals"] for i in m["items"])

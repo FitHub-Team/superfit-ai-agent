@@ -1,6 +1,6 @@
 # ==========================================
-# أدوات الأطعمة — بوابة موحدة لجدول foods
-# كل قراءة بالمنظومة تمر من هنا (لا SQL مباشر بالوكيلات)
+# أدوات الأطعمة — بوابة موحدة (v2)
+# foods (مكونات) + local_dishes (أكلات شعبية)
 # ==========================================
 
 import sqlite3
@@ -23,9 +23,7 @@ def search_foods(
     db_path: str = "app/data/superfit.db",
     conn=None,
 ) -> list[dict]:
-    """
-    يبحث بالأطعمة وفق فلاتر اختيارية — والنتيجة دائماً dict جاهز للبرومبت
-    """
+    """يبحث بالأطعمة (المكونات) وفق فلاتر اختيارية"""
     close_conn = False
     if conn is None:
         conn = get_connection(db_path)
@@ -55,7 +53,7 @@ def search_foods(
 
         where = f"WHERE {' AND '.join(conditions)}" if conditions else ""
         query = f"""
-            SELECT id, name, measure, serving_grams,
+            SELECT id, name, name_ar, measure, serving_grams,
                    calories_per_100g, protein_per_100g,
                    carbs_per_100g, fat_per_100g, category
             FROM foods
@@ -73,17 +71,84 @@ def search_foods(
             conn.close()
 
 
-def get_food_by_name(name: str, db_path: str = "app/data/superfit.db", conn=None) -> Optional[dict]:
-    """جلب غذاً بالاسم الدقيق — للتحقق من تطابق أسماء الموديل"""
+def search_local_dishes(
+    categories: Optional[list[str]] = None,
+    exclude_names: Optional[list[str]] = None,
+    limit: int = 35,
+    db_path: str = "app/data/superfit.db",
+    conn=None,
+) -> list[dict]:
+    """
+    🆕 الأكلات الشعبية الفلسطينية — جدول local_dishes
+    ترجع بنفس بنية search_foods (name_en+name_ar) حتى البرومبت يستقبلها موحدة
+    """
     close_conn = False
     if conn is None:
         conn = get_connection(db_path)
         close_conn = True
 
     try:
+        conditions = []
+        params: list = []
+
+        if categories:
+            ph = ",".join("?" for _ in categories)
+            conditions.append(f"category IN ({ph})")
+            params.extend(categories)
+
+        if exclude_names:
+            for kw in exclude_names:
+                conditions.append("(LOWER(name_en) NOT LIKE ? AND LOWER(name_ar) NOT LIKE ?)")
+                params.append(f"%{str(kw).lower()}%")
+                params.append(f"%{str(kw).lower()}%")
+
+        where = f"WHERE {' AND '.join(conditions)}" if conditions else ""
+        query = f"""
+            SELECT id,
+                   name_en AS name,
+                   name_ar,
+                   measure,
+                   serving_grams,
+                   calories_per_100g,
+                   protein_per_100g AS protein_per_100g,
+                   carbs_per_100g,
+                   fat_per_100g,
+                   category
+            FROM local_dishes
+            {where}
+            ORDER BY name_ar
+            LIMIT ?
+        """
+        params.append(limit)
+
+        rows = conn.execute(query, params).fetchall()
+        return [dict(r) for r in rows]
+
+    finally:
+        if close_conn:
+            conn.close()
+
+
+def get_food_by_name(name: str, db_path: str = "app/data/superfit.db", conn=None) -> Optional[dict]:
+    """جلب غذاً بالاسم الدقيق (إنجليزي أو عربي) — يبحث بالجدولين"""
+    close_conn = False
+    if conn is None:
+        conn = get_connection(db_path)
+        close_conn = True
+
+    try:
+        name_low = name.strip().lower()
+        # 1) foods (إنجليزي أو عربي)
         row = conn.execute(
-            "SELECT * FROM foods WHERE LOWER(name) = LOWER(?) LIMIT 1",
-            (name.strip(),),
+            "SELECT * FROM foods WHERE LOWER(name)=? OR LOWER(name_ar)=? LIMIT 1",
+            (name_low, name_low),
+        ).fetchone()
+        if row:
+            return dict(row)
+        # 2) local_dishes
+        row = conn.execute(
+            "SELECT * FROM local_dishes WHERE LOWER(name_en)=? OR LOWER(name_ar)=? LIMIT 1",
+            (name_low, name_low),
         ).fetchone()
         return dict(row) if row else None
     finally:
@@ -92,10 +157,7 @@ def get_food_by_name(name: str, db_path: str = "app/data/superfit.db", conn=None
 
 
 def find_closest_food(name: str, db_path: str = "app/data/superfit.db", conn=None) -> Optional[dict]:
-    """
-    أقرب مطابقة اسمية — أساس تصحيح أسماء الموديل
-    مثال: 'Skim. milk' → 'Milk skim'
-    """
+    """أقرب مطابقة اسمية (عربي/إنجليزي) — أساس تصحيح أسماء الموديل"""
     from difflib import get_close_matches
 
     close_conn = False
@@ -105,6 +167,9 @@ def find_closest_food(name: str, db_path: str = "app/data/superfit.db", conn=Non
 
     try:
         all_names = [r[0] for r in conn.execute("SELECT name FROM foods").fetchall()]
+        all_names += [r[0] for r in conn.execute("SELECT name_ar FROM local_dishes").fetchall()]
+        all_names += [r[0] for r in conn.execute("SELECT name_en FROM local_dishes").fetchall()]
+
         matches = get_close_matches(name.strip(), all_names, n=1, cutoff=0.6)
         if not matches:
             return None
