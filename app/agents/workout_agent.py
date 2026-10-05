@@ -1,7 +1,9 @@
 # ==========================================
-# وكيل التمارين — v4 (فوق أدوات app/tools)
-# الجديد: partner_available — يستقبلها من الـ endpoint
-#         ويمررها للأداة search_exercises (فلتر الشراكة)
+# وكيل التمارين — v6 (فوق أدوات app/tools + العرض العربي الكامل)
+# الجديد:
+#   1. partner_available — فلتر الشراكة للفرديين
+#   2. focus_ar داخل session (صح — مش بس بجسم اليوم)
+#   3. day_name_ar + name_ar + target_muscle_ar + equipment_ar بالرد
 # الكود: التقسيم بالكتالوج + الأداة تفتري التمارين الآمنة
 # الموديل: يختار ويرتب (sets/reps/rest) من القائمة الآمنة
 # ==========================================
@@ -12,15 +14,34 @@ sys.path.insert(0, ".")
 import os
 import json
 import time
+import sqlite3
+from typing import Optional
 from dotenv import load_dotenv
 from pydantic import ValidationError
 from app.core.llm_factory import create_llm
 from app.core.llm_utils import extract_text, clean_json_text
+from app.core.translations import day_name_ar, translate_focus, MUSCLES_AR, EQUIPMENT_AR
 from app.schemas.plan import LLMWorkoutWeek
 from app.services.splits import get_split, get_focus_muscles
 from app.tools.exercise_tools import search_exercises
 
 load_dotenv()
+
+
+def _get_title_ar(title_en: str) -> Optional[str]:
+    """يبحث الاسم العربي بالقاعدة لاسم تمرين إنجليزي — fallback للإنجليزي"""
+    try:
+        conn = sqlite3.connect("app/data/superfit.db")
+        try:
+            row = conn.execute(
+                "SELECT title_ar FROM exercises WHERE LOWER(title) = ? AND title_ar IS NOT NULL LIMIT 1",
+                (title_en.strip().lower(),),
+            ).fetchone()
+            return row[0] if row else None
+        finally:
+            conn.close()
+    except Exception:
+        return None
 
 
 # ==========================================
@@ -34,8 +55,11 @@ def build_session_prompt(
     available_exercises: list[dict],
     variation_note: str = "",
 ) -> str:
+    # 🇵🇸 القائمة بالاسمين (عربي + إنجليزي)
     exercises_text = "\n".join(
-        f"- {ex['title']} | عضلة: {ex['body_part']} | جهاز: {ex['equipment']} | مستوى: {ex['level']}"
+        f"- {ex['title']} ({ex.get('title_ar') or 'غير مترجم'}) | "
+        f"عضلة: {ex['body_part']} ({ex.get('target_muscle_ar') or '-'}) | "
+        f"جهاز: {ex['equipment']} ({ex.get('equipment_ar') or '-'}) | مستوى: {ex['level']}"
         for ex in available_exercises
     )
 
@@ -64,6 +88,7 @@ def build_session_prompt(
 - الهدف: {guidance}
 
 ## التمارين المتاحة فقط (اختر منها — كلها مفتراة وآمنة مسبقاً وفق معدات المستخدم وإصاباته):
+(الصيغة: الاسم الإنجليزي (العربي) | العضلة (عربي) | الجهاز (عربي) | المستوى)
 {exercises_text}
 
 ## قواعد إلزامية:
@@ -72,15 +97,20 @@ def build_session_prompt(
 3. ضع لكل تمرين: sets (1-5)، reps (مثال: 8-12 أو 12-15)، rest_seconds (30-120)
 4. غطِّ كل العضلات المستهدفة المذكورة أعلاه
 5. أجب بـ JSON فقط — بدون أي كلام قبله أو بعده
-{f'''
-## ملاحظة تنويع:
-{variation_note}
-''' if variation_note else ''}
+
 ## شكل الـ JSON المطلوب بالضبط:
 {{
   "focus": "{focus}",
   "exercises": [
-    {{"name": "اسم التمرين حرفياً من القائمة", "target_muscle": "العضلة", "equipment": "الجهاز", "sets": 3, "reps": "8-12", "rest_seconds": 60}}
+    {{
+      "name": "اسم التمرين الإنجليزي حرفياً من القائمة",
+      "name_ar": "الاسم العربي بين القوسين من القائمة",
+      "target_muscle": "العضلة الإنجليزية حرفياً",
+      "target_muscle_ar": "العضلة العربية بين القوسين",
+      "equipment": "الجهاز الإنجليزي حرفياً",
+      "equipment_ar": "الجهاز العربي بين القوسين",
+      "sets": 3, "reps": "8-12", "rest_seconds": 60
+    }}
   ]
 }}
 
@@ -99,12 +129,26 @@ def generate_session(
     llm,
     variation_note: str = "",
 ) -> dict:
-    """يولد جلسة واحدة — مع إعادة محاولة ذكية"""
+    """يولد جلسة واحدة — مع إعادة محاولة ذكية + إثراء عربي من القاعدة"""
 
     prompt = build_session_prompt(
         focus, focus_muscles, user_level, goal,
         available_exercises, variation_note,
     )
+
+    # 🇵🇸 خريطة الترجمات المسبقة (إنجليزي → عربي) من القاعدة
+    title_map = {
+        ex["title"]: ex.get("title_ar") or ex["title"]
+        for ex in available_exercises
+    }
+    muscle_map = {
+        ex["body_part"]: ex.get("target_muscle_ar") or ex["body_part"]
+        for ex in available_exercises
+    }
+    equip_map = {
+        ex["equipment"]: ex.get("equipment_ar") or ex["equipment"]
+        for ex in available_exercises
+    }
 
     last_error = None
     for attempt in range(1, 4):
@@ -123,6 +167,18 @@ def generate_session(
                 raise json.JSONDecodeError("جلسة ناقصة (أقل من 3 تمارين)", raw, 0)
 
             data["focus"] = focus
+
+            # 🇵🇸 حقن الحقول العربية من الخريطة (دقة 100% — من القاعدة)
+            for ex in data["exercises"]:
+                en_name = ex.get("name", "")
+                ex["name_ar"] = title_map.get(en_name, en_name)
+                ex["target_muscle_ar"] = muscle_map.get(
+                    ex.get("target_muscle", ""), ex.get("target_muscle", "")
+                )
+                ex["equipment_ar"] = equip_map.get(
+                    ex.get("equipment", ""), ex.get("equipment", "")
+                )
+
             return data
 
         except (json.JSONDecodeError, ValidationError) as e:
@@ -155,16 +211,14 @@ def generate_workout_week(
     medical_restrictions: list[str] = None,
     available_equipment: list[str] = None,
     variation_hint: str = None,
-    partner_available: bool = True,        # 🆕 فلتر الشراكة
+    partner_available: bool = True,
 ) -> LLMWorkoutWeek:
     """
     يولد أسبوعاً تدريبياً كاملاً — كل القراءات عبر exercise_tools:
     1) الكتالوج يحدد خريطة الأسبوع
     2) لكل جلسة: الأداة تفتري التمارين الآمنة (عضلات/مستوى/معدات/إصابات/شراكة)
     3) الموديل يختار ويرتب التفاصيل
-    4) تجميع الأسبوع والتحقق من العقد
-
-    partner_available=False → يستبعد تمارين الشراكة (المستخدم فردي)
+    4) حقن الترجمات العربية + تجميع الأسبوع
     """
     medical_restrictions = medical_restrictions or []
     available_equipment = available_equipment or ["Body Only"]
@@ -190,8 +244,14 @@ def generate_workout_week(
         is_rest = (focus == "rest")
 
         if is_rest:
-            days.append({"day_number": day_num, "is_rest": True, "session": None})
-            print(f"    💤 يوم {day_num}: راحة")
+            days.append({
+                "day_number": day_num,
+                "is_rest": True,
+                "session": None,
+                "day_name_ar": day_name_ar(day_num),   # 🇵🇸
+                "focus_ar": "راحة",                     # 🇵🇸
+            })
+            print(f"    💤 يوم {day_num} ({day_name_ar(day_num)}): راحة")
             continue
 
         focus_muscles = get_focus_muscles(focus)
@@ -203,14 +263,13 @@ def generate_workout_week(
         }
         allowed_levels = level_scope.get(user_level.lower(), ["Beginner", "Intermediate"])
 
-        # ✅ الأداة تفعل الفلترة كاملة (عضلات/مستوى/معدات/مفاصل/شراكة)
         safe_exercises = search_exercises(
             body_parts=focus_muscles,
             allowed_levels=allowed_levels,
             available_equipment=available_equipment,
             medical_restrictions=medical_restrictions,
             limit=40,
-            partner_available=partner_available,   # 🆕 فلتر الشراكة
+            partner_available=partner_available,   # 🔒 فلتر الشراكة
         )
         print(f"    🏋️ يوم {day_num}: جلسة {focus} — {len(safe_exercises)} تمرين آمن متاح")
 
@@ -223,10 +282,10 @@ def generate_workout_week(
                 available_equipment=available_equipment,
                 medical_restrictions=medical_restrictions,
                 limit=40,
-                partner_available=partner_available,   # 🆕
+                partner_available=partner_available,
             )
 
-        # تقليص ذكي — تنويع بالأجهزة (منطق الوكيل، فوق نتيجة الأداة)
+        # تقليص ذكي — تنويع بالأجهزة
         if len(safe_exercises) > 20:
             by_eq = {}
             for ex in safe_exercises:
@@ -250,7 +309,16 @@ def generate_workout_week(
             variation_note=variation_note,
         )
 
-        days.append({"day_number": day_num, "is_rest": False, "session": session_data})
+        # 🇵🇸 حقن focus_ar داخل الجلسة نفسها (التصحيح الحاسم!)
+        session_data["focus_ar"] = translate_focus(focus)
+
+        days.append({
+            "day_number": day_num,
+            "is_rest": False,
+            "session": session_data,
+            "day_name_ar": day_name_ar(day_num),
+            "focus_ar": translate_focus(focus),
+        })
         print(f"    ✅ جلسة {focus} جاهزة — {len(session_data['exercises'])} تمارين")
 
     week_data = {"week_number": 1, "days": days}

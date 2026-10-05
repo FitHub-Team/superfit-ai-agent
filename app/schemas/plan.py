@@ -2,8 +2,8 @@
 # عقد خطة SuperFit — طبقتان:
 #   طبقة 1 (LLM*): مخرجات خام من الموديل — مطلوبة بنية صحيحة
 #   طبقة 2 (النهائية): الرد المُثرى المعياري لـ Laravel بعد حسابات الكود
-# v2: دعم name_ar / title_ar / day_name_ar / focus_ar (العرض العربي)
-#     + حقول اختيارية: الموديل قد يرجع الاسمين — أو الكود يضيف العربي بالإثراء
+# v3: حقول عربية بكل المستويات (name_ar / title_ar / day_name_ar / focus_ar)
+#     + كل الحقول الجديدة Optional — لا تكسر الكود القديم
 # ==========================================
 
 from pydantic import BaseModel, Field
@@ -67,6 +67,7 @@ class LLMExercise(BaseModel):
 
 class LLMSession(BaseModel):
     focus: str = Field(..., description="من تقسيم الأيام المعطى")
+    focus_ar: Optional[str] = None       # 🆕 هاد الباج — الحقل كان ناقص!
     exercises: list[LLMExercise] = Field(..., min_length=3, max_length=8)
 
 
@@ -98,7 +99,7 @@ class PlanSummary(BaseModel):
 
 class FoodItem(BaseModel):
     name: str                                    # إنجليزي — تقني
-    name_ar: Optional[str] = None                # 🆕 عربي — للعرض
+    name_ar: Optional[str] = None                # 🇵🇸 عربي — للعرض
     quantity: str
     calories: float
     protein_g: float

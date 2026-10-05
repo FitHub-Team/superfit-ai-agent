@@ -1,7 +1,7 @@
 # ==========================================
-# Endpoint التمارين — v3
-# الجديد: partner_available — فلتر الشراكة
-# variation_hint + duration_weeks=1 (من v2)
+# Endpoint التمارين — v4
+# الجديد: day_name_ar + focus_ar بالرد (عرض عربي كامل)
+# partner_available + variation_hint + duration_weeks=1
 # ==========================================
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -48,7 +48,7 @@ def generate_workout_plan(req: WorkoutPlanRequest):
 
     print(f"🏋️ التقسيم: {applied.name} | شراكة: {req.partner_available} | تنويع: {req.variation_hint}")
 
-    # ===== 2) التوليد (أسبوع واحد — بكل الفلاتر) =====
+    # ===== 2) التوليد (أسبوع واحد) =====
     try:
         week1 = generate_workout_week(
             split_id=applied.split_id,
@@ -56,7 +56,7 @@ def generate_workout_plan(req: WorkoutPlanRequest):
             goal=req.goal,
             medical_restrictions=req.medical_restrictions,
             available_equipment=req.available_equipment,
-            partner_available=req.partner_available,   # 🆕
+            partner_available=req.partner_available,
         )
     except RuntimeError as e:
         raise HTTPException(status_code=503, detail=f"تعذر توليد الخطة: {e}")
@@ -65,12 +65,14 @@ def generate_workout_plan(req: WorkoutPlanRequest):
     applied_out = SplitOptionOut(
         split_id=applied.split_id,
         name=applied.name,
+        name_ar=applied.name,          # 🇵🇸 (تُضاف من الكتالوج لاحقاً — مؤقتاً نفس القيمة)
         description=applied.description,
         layout=applied.layout,
     )
     alt_out = [
         SplitOptionOut(
             split_id=s.split_id, name=s.name,
+            name_ar=s.name,
             description=s.description, layout=s.layout,
         ) for s in alternatives
     ]
