@@ -1,9 +1,8 @@
 # ==========================================
 # عقد خطة SuperFit — طبقتان:
-#   طبقة 1 (LLM*): مخرجات خام من الموديل — مطلوبة بنية صحيحة
-#   طبقة 2 (النهائية): الرد المُثرى المعياري لـ Laravel بعد حسابات الكود
-# v3: حقول عربية بكل المستويات (name_ar / title_ar / day_name_ar / focus_ar)
-#     + كل الحقول الجديدة Optional — لا تكسر الكود القديم
+#   طبقة 1 (LLM*): مخرجات خام من الموديل — بالـ exercise_id فقط
+#   طبقة 2 (النهائية): الرد المعياري لـ Laravel — IDs موحدة
+# v3: Exercise Library موحدة — الـ AI يرد exercise_id فقط (ممنوع أسماء)
 # ==========================================
 
 from pydantic import BaseModel, Field
@@ -19,7 +18,7 @@ WeekDay = Literal["saturday", "sunday", "monday", "tuesday",
 
 
 # ==========================================
-# طبقة 1: مخرجات الـ LLM (الخام)
+# طبقة 1: مخرجات الـ LLM (الخام) — التغذية
 # ==========================================
 
 class LLMFoodItem(BaseModel):
@@ -50,16 +49,17 @@ class LLMNutritionWeek(BaseModel):
     days: list[LLMDay] = Field(..., min_length=7, max_length=7)
 
 
+# ==========================================
+# طبقة 1: مخرجات الـ LLM (الخام) — التمارين
+# 🆕 v3: exercise_id فقط — ممنوع أسماء
+# ==========================================
+
 class LLMExercise(BaseModel):
-    name: str = Field(..., description="اسم التمرين — من قائمة التمارين المعطاة")
-    name_ar: Optional[str] = Field(
-        default=None,
-        description="الاسم العربي — إن توفر بالمترجم، أو يُملأ بالكود"
+    exercise_id: int = Field(
+        ...,
+        ge=0,
+        description="معرف التمرين — يجب أن يكون موجوداً حرفياً بقائمة التمارين المعطاة"
     )
-    target_muscle: str
-    target_muscle_ar: Optional[str] = None
-    equipment: str
-    equipment_ar: Optional[str] = None
     sets: int = Field(..., ge=1, le=6)
     reps: str = Field(..., description="مثال: 8-12")
     rest_seconds: int = Field(..., ge=15, le=300)
@@ -67,7 +67,7 @@ class LLMExercise(BaseModel):
 
 class LLMSession(BaseModel):
     focus: str = Field(..., description="من تقسيم الأيام المعطى")
-    focus_ar: Optional[str] = None       # 🆕 هاد الباج — الحقل كان ناقص!
+    focus_ar: Optional[str] = None       # 🇵🇸
     exercises: list[LLMExercise] = Field(..., min_length=3, max_length=8)
 
 
@@ -75,8 +75,8 @@ class LLMDayWorkout(BaseModel):
     day_number: int = Field(..., ge=1, le=7)
     is_rest: bool
     session: Optional[LLMSession] = None
-    day_name_ar: Optional[str] = None      # "السبت"
-    focus_ar: Optional[str] = None          # "صدر وترايسبس"
+    day_name_ar: Optional[str] = None
+    focus_ar: Optional[str] = None
 
 
 class LLMWorkoutWeek(BaseModel):
@@ -85,7 +85,7 @@ class LLMWorkoutWeek(BaseModel):
 
 
 # ==========================================
-# طبقة 2: الرد النهائي (بعد حسابات الكود والإثراء)
+# طبقة 2: الرد النهائي (لـ Laravel) — التغذية
 # ==========================================
 
 class PlanSummary(BaseModel):
@@ -108,10 +108,9 @@ class FoodItem(BaseModel):
 
 
 class SwappableComponent(BaseModel):
-    """بدائل من الداتابيس — نفس الفئة وسعرات مشابهة وخالية من الممنوعات"""
     component: Literal["protein", "carbs", "fat", "full_meal"]
     current_item: str
-    current_item_ar: Optional[str] = None        # 🆕
+    current_item_ar: Optional[str] = None
     options: list[FoodItem]
 
 
@@ -147,13 +146,13 @@ class NutritionPlanResponse(BaseModel):
     weeks: list[WeekNutrition] = Field(..., min_length=2, max_length=2)
 
 
+# ==========================================
+# طبقة 2: الرد النهائي (لـ Laravel) — التمارين
+# 🆕 v3: exercise_id فقط — التفاصيل بيجيبها الباك من مكتبته
+# ==========================================
+
 class ExerciseItem(BaseModel):
-    name: str
-    name_ar: Optional[str] = None                # 🆕
-    target_muscle: str
-    target_muscle_ar: Optional[str] = None       # 🆕
-    equipment: str
-    equipment_ar: Optional[str] = None           # 🆕
+    exercise_id: int
     sets: int
     reps: str
     rest_seconds: int
@@ -161,7 +160,7 @@ class ExerciseItem(BaseModel):
 
 class WorkoutSession(BaseModel):
     focus: str
-    focus_ar: Optional[str] = None               # 🆕
+    focus_ar: Optional[str] = None
     exercises: list[ExerciseItem] = Field(..., min_length=3, max_length=8)
 
 
@@ -170,7 +169,7 @@ class DayWorkout(BaseModel):
     day_name: WeekDay
     is_rest: bool
     session: Optional[WorkoutSession] = None
-    day_name_ar: Optional[str] = None            # 🆕
+    day_name_ar: Optional[str] = None
 
 
 class WeekWorkout(BaseModel):
@@ -179,11 +178,10 @@ class WeekWorkout(BaseModel):
 
 
 class SplitOption(BaseModel):
-    """تقسيم أسبوع معروض للمستخدم — من الكتالوج الثابت بالكود"""
-    split_id: str = Field(..., description="مثال: 4day_bro")
-    name: str = Field(..., description="مثال: التقسيم العضلي الكلاسيكي")
-    name_ar: Optional[str] = None                # 🆕
-    layout: list[str] = Field(..., description="أيام التمرين بالترتيب")
+    split_id: str
+    name: str
+    name_ar: Optional[str] = None
+    layout: list[str]
 
 
 class WorkoutPlanResponse(BaseModel):

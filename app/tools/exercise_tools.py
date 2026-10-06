@@ -1,6 +1,7 @@
 # ==========================================
 # أدوات التمارين — بوابة موحدة لجدول exercises
-# v3: فلتر الشراكة (Partner) + جلب الحقول العربية
+# v4: إضافة id بالـ SELECT — جاهز للـ Exercise Library الموحدة
+# فلتر الشراكة (Partner) + جلب الحقول العربية
 # الفلترة الطبية للمفاصل مدموجة — أي استدعاء = نتيجة آمنة
 # ==========================================
 
@@ -77,7 +78,7 @@ def search_exercises(
       medical_restrictions  → نصوص إصابات → فلترة مفاصل تلقائية
       exercise_type         → Strength / Cardio / ...
       partner_available     → False = يستبعد تمارين الشراكة
-    ترجع العناوين العربية (title_ar) والعربي للعضلة/الجهاز أيضاً
+    🆕 يرجع عمود id — أساس الـ Exercise Library الموحدة
     """
     close_conn = False
     if conn is None:
@@ -104,11 +105,10 @@ def search_exercises(
 
         where = f"WHERE {' AND '.join(conditions)}" if conditions else ""
         query = f"""
-            SELECT title, title_ar, type, body_part,
-                   target_muscle_ar, equipment, equipment_ar, level
+            SELECT id, title, type, body_part, equipment, level
             FROM exercises
             {where}
-            ORDER BY title
+            ORDER BY id
         """
         rows = conn.execute(query, params).fetchall()
         exercises = [dict(r) for r in rows]
