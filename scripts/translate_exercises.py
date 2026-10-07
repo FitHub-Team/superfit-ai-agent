@@ -1,6 +1,8 @@
 # ==========================================
-# ترجمة أسماء التمارين للعربية — حسب العضلات
-# v2: حفظ دوري بعد كل عضلة + استئناف ذكي (يقرا المسودة ويكمل من المتبقي)
+# ترجمة أسماء التمارين للعربية — حسب العضلات (دفعة دفعة)
+# أولاً: استخراج التمارين غير المترجمة
+# ثانياً: ترجمتها بالـ LLM — دفعة كل عضلة
+# ثالثاً: حفظ المسودة للمراجعة اليدوية
 # ==========================================
 
 import sys
@@ -17,7 +19,7 @@ from app.core.llm_utils import extract_text, clean_json_text
 load_dotenv()
 
 # ==========================================
-# ترتيب العضلات
+# ترتيب العضلات — بنشتغل عضلة عضلة
 # ==========================================
 MUSCLE_ORDER = [
     "Chest",
@@ -38,25 +40,15 @@ MUSCLE_ORDER = [
     "Abductors",
 ]
 
-# ملف المسودة — يُحفظ ويُقرا (استئناف)
-DRAFT_FILE = "scripts/exercises_translations_draft.json"
-
 
 def translate_exercises_by_muscle():
-    # 0) تحميل المسودة الحالية (استئناف — اللي انترجم قبل ما نكرر)
-    all_translations = {}
-    if os.path.exists(DRAFT_FILE):
-        with open(DRAFT_FILE, encoding="utf-8") as f:
-            all_translations = json.load(f)
-        print(f"📂 استئناف من المسودة السابقة: {len(all_translations)} ترجمة موجودة")
-
     conn = sqlite3.connect("app/data/superfit.db")
     conn.row_factory = sqlite3.Row
 
-    llm = create_llm()
+    # 1) التمارين غير المترجمة — حسب العضلة
+    all_translations = {}
 
     for muscle in MUSCLE_ORDER:
-        # 1) التمارين الغير مترجمة بالعضلة الحالية (تجاهل المترجمين سابقاً)
         rows = conn.execute("""
             SELECT id, title
             FROM exercises
@@ -70,6 +62,9 @@ def translate_exercises_by_muscle():
 
         print(f"\n🏋️ {muscle}: {len(rows)} تمرين للترجمة...")
 
+        llm = create_llm()
+
+        # تقسيم بكل عضلة — دفعات 15 لكل استدعاء
         exercises = [dict(r) for r in rows]
         BATCH_SIZE = 15
         batches = [exercises[i:i + BATCH_SIZE] for i in range(0, len(exercises), BATCH_SIZE)]
@@ -101,7 +96,7 @@ def translate_exercises_by_muscle():
 }}"""
 
             success = False
-            for retry in range(2):
+            for retry in range(2):  # محاولتان لكل دفعة
                 try:
                     response = llm.invoke(prompt)
                     raw = extract_text(response)
@@ -121,31 +116,27 @@ def translate_exercises_by_muscle():
                 except Exception as e:
                     print(f"      ⚠️ خطأ: {str(e)[:100]}")
                     if retry == 1:
-                        print(f"      ❌ فشلت الدفعة — نكمل الباقي")
+                        print(f"      ❌ فشلت الدفعة — سنكمل الباقي")
                     else:
-                        time.sleep(10)
+                        time.sleep(5)
 
-            # 🔑 الحفظ الدوري — بعد كل دفعة (أمان كامل!)
-            if all_translations:
-                with open(DRAFT_FILE, "w", encoding="utf-8") as f:
-                    json.dump(all_translations, f, ensure_ascii=False, indent=2)
+            time.sleep(2)  # استراحة قصيرة بين الدفعات
 
-            time.sleep(2)
-
-        # 🔑 الحفظ بعد كل عضلة كاملة (أمان مزدوج)
-        if all_translations:
-            with open(DRAFT_FILE, "w", encoding="utf-8") as f:
-                json.dump(all_translations, f, ensure_ascii=False, indent=2)
-            print(f"   💾 محفوظ بعد {muscle}: {len(all_translations)} ترجمة إجمالاً")
-
+    # ==========================================
+    # حفظ المسودة للمراجعة اليدوية
+    # ==========================================
     conn.close()
 
     if all_translations:
-        print(f"\n💾 المسودة النهائية: {DRAFT_FILE}")
+        with open("scripts/exercises_translations_draft.json", "w", encoding="utf-8") as f:
+            json.dump(all_translations, f, ensure_ascii=False, indent=2)
+
+        print(f"\n💾 المسودة انحفظت: scripts/exercises_translations_draft.json")
         print(f"📊 إجمالي الترجمات: {len(all_translations)}")
-        print("\n👉 الخطوة الجاية: مراجعتك للترجمات ثم سكريبت الإضافة للقاعدة")
+        print("\n👉 الخطوة الجاية: افتح الملف وراجع الترجمات وعدّل اللي بدك ياه")
+        print("   وبعدها بننفذ سكريبت الإضافة النهائي للقاعدة")
     else:
-        print("\n🤔 ما انولدت ترجمات")
+        print("\n🤔 ما انولدت ترجمات جديدة — كلها مترجمين أو حصل خطأ")
 
 
 if __name__ == "__main__":

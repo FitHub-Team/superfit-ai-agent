@@ -1,9 +1,11 @@
 # ==========================================
 # أدوات التمارين — بوابة موحدة لجدول exercises
-# v4: إضافة id بالـ SELECT — جاهز للـ Exercise Library الموحدة
-# فلتر الشراكة (Partner) + جلب الحقول العربية
+# v4: فلتر الشراكة + جلب الحقول العربية + الترجمة عند الطلب
 # الفلترة الطبية للمفاصل مدموجة — أي استدعاء = نتيجة آمنة
 # ==========================================
+
+import sys
+sys.path.insert(0, ".")
 
 import sqlite3
 from typing import Optional
@@ -59,6 +61,82 @@ def _is_partner_exercise(exercise: dict) -> bool:
     return "partner" in title or "with partner" in title
 
 
+def _translate_exercises_on_demand(exercises: list[dict], llm=None) -> list[dict]:
+    """
+    🆕 ترجمة عند الطلب — التمارين الجديدة (بلا title_ar) عبر LLM
+    - خزن الترجمات بالقاعدة — ترجمة دائمة (لا يعاد ترجمتها)
+    - fallback آمن: فشل الترجمة → الإنجليزي يظهر بدون كرش
+    """
+    to_translate = [ex for ex in exercises if not ex.get("title_ar")]
+    if not to_translate:
+        return exercises
+
+    print(f"      🌐 ترجمة {len(to_translate)} تمرين جديد (عند الطلب)...")
+
+    try:
+        # استيراد LLM — من الطبقة المشتركة (fallback مدمج)
+        if llm is None:
+            from app.core.llm_factory import create_llm
+            llm = create_llm()
+
+        # تجهيز القائمة
+        names_text = "\n".join(
+            f"- id: {ex['id']} | التمرين: {ex['title']}"
+            for ex in to_translate
+        )
+
+        prompt = f"""ترجم أسماء التمارين التالية للعربية الفصيحة المبسطة — بلهجة مفهومة للفلسطينيين/العرب.
+
+القواعد:
+- ترجمة بسيطة ومباشرة (كلمة أو كلمتين) — مصطلح لياقة شائع مو ترجمة علمية
+- أسماء الأطباق المركبة: ترجمها بصف بسيط
+- بدون شرح — الرد JSON فقط
+
+التمارين:
+{names_text}
+
+أجب بـ JSON فقط بالشكل:
+{{
+  "translations": [
+    {{"id": 972, "arabic": "الترجمة العربية"}},
+    ...
+  ]
+}}"""
+
+        response = llm.invoke(prompt)
+        raw = extract_text(response)
+        raw = clean_json_text(raw)
+        data = json.loads(raw)
+
+        # تحديث القاعدة بالترجمات الجديدة
+        conn = get_connection()
+        ar_map = {}
+        for item in data.get("translations", []):
+            ex_id = item.get("id")
+            ar_name = item.get("arabic")
+            if ex_id and ar_name:
+                conn.execute(
+                    "UPDATE exercises SET title_ar = ? WHERE id = ?",
+                    (ar_name, ex_id),
+                )
+                ar_map[ex_id] = ar_name
+        conn.commit()
+        conn.close()
+
+        # تحديث المخرجات بالترجمات الجديدة
+        for ex in exercises:
+            ex_id = ex.get("id")
+            if ex_id in ar_map:
+                ex["title_ar"] = ar_map[ex_id]
+
+        print(f"      ✅ ترجمت وتم تخزينها — {len(ar_map)} تمرين")
+
+    except Exception as e:
+        print(f"      ⚠️ فشل الترجمة التلقائية — سيتم العرض بالإنجليزي: {str(e)[:100]}")
+
+    return exercises
+
+
 def search_exercises(
     body_parts: Optional[list[str]] = None,
     allowed_levels: Optional[list[str]] = None,
@@ -69,6 +147,8 @@ def search_exercises(
     limit: int = 30,
     db_path: str = "app/data/superfit.db",
     conn=None,
+    llm=None,
+    auto_translate: bool = True,     # 🆕 تفعيل الترجمة عند الطلب
 ) -> list[dict]:
     """
     يبحث بالتمارين وفق فلاتر آمنة:
@@ -78,7 +158,8 @@ def search_exercises(
       medical_restrictions  → نصوص إصابات → فلترة مفاصل تلقائية
       exercise_type         → Strength / Cardio / ...
       partner_available     → False = يستبعد تمارين الشراكة
-    🆕 يرجع عمود id — أساس الـ Exercise Library الموحدة
+    🆕 auto_translate=True → التمارين الجديدة (بلا title_ar) تترجم وتُخزن تلقائياً
+    ترجع العناوين العربية (title_ar) والعربي للعضلة/الجهاز أيضاً
     """
     close_conn = False
     if conn is None:
@@ -105,7 +186,8 @@ def search_exercises(
 
         where = f"WHERE {' AND '.join(conditions)}" if conditions else ""
         query = f"""
-            SELECT id, title, type, body_part, equipment, level
+            SELECT id, title, title_ar, type, body_part,
+                   target_muscle_ar, equipment, equipment_ar, level
             FROM exercises
             {where}
             ORDER BY id
@@ -137,6 +219,10 @@ def search_exercises(
         # 3) فلتر الشراكة — يستبعد تمارين الشريك للفرديين
         if not partner_available:
             exercises = [ex for ex in exercises if not _is_partner_exercise(ex)]
+
+        # 🆕 ترجمة عند الطلب — للتمارين الجديدة
+        if auto_translate:
+            exercises = _translate_exercises_on_demand(exercises, llm)
 
         return exercises[:limit]
 
