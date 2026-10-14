@@ -1,10 +1,9 @@
 # ==========================================
-# Endpoint التغذية — v2
-# الجديد: duration_weeks=1 + variation_hint تمرير
+# Endpoint التغذية — v3 بالـ food_id الموحد
+# الجذري: الرد food_id فقط — التفاصيل بيجيبها الباك من مكتبته
+# الإثراء مبسط: ما نحتاج resolve بالأسماء — المطابقة بالـ id مباشرة
 # ==========================================
 
-import re
-import sqlite3
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.core.security import verify_api_key
@@ -24,10 +23,8 @@ from app.services.medical_rules import (
     adjust_macros_for_medical, build_medical_instructions,
 )
 from app.agents.nutrition_agent import generate_nutrition_week
-from app.tools.food_tools import get_connection, search_foods
-from app.services.enrichment import (
-    resolve_food_name, close_calorie_gap, build_swappable,
-)
+from app.tools.food_tools import get_connection, search_foods, search_local_dishes
+from app.services.enrichment import build_swappable
 
 router = APIRouter(prefix="/generate", dependencies=[Depends(verify_api_key)])
 
@@ -53,7 +50,9 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
 
     # ===== 2) الحماية الطبية =====
     rules = detect_conditions(req.medical_conditions)
-    all_foods = search_foods(limit=100)
+    foods_part = search_foods(limit=100)
+    dishes_part = search_local_dishes(limit=35)
+    all_foods = foods_part + dishes_part
     safe_foods = all_foods
     excluded_count = 0
     if rules:
@@ -63,7 +62,7 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
 
     medical_instructions = build_medical_instructions(rules)
 
-    # ===== 3) التوليد (أسبوع واحد — مع تلميح التنويع) =====
+    # ===== 3) التوليد (أسبوع واحد — بالـ food_ids) =====
     try:
         week1 = generate_nutrition_week(
             target_calories=target, protein_g=protein_g,
@@ -72,21 +71,27 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
             allergies=req.allergies,
             medical_conditions=req.medical_conditions,
             available_foods=safe_foods,
-            variation_hint=req.variation_hint,   # 🔄 التلميح الجديد
         )
     except RuntimeError as e:
         raise HTTPException(status_code=503, detail=f"تعذر توليد الخطة: {e}")
 
-    # ===== 4) الإثراء =====
+    # ===== 4) الإثراء — المطابقة بالـ food_id مباشرة (دقة 100%) =====
     conn = get_connection()
     try:
-        all_names = [r[0] for r in conn.execute("SELECT name FROM foods").fetchall()]
+        # خريطة الطعام بالـ id — من الجدولين
+        food_by_id = {}
+        for r in conn.execute("SELECT * FROM foods"):
+            food_by_id[r["id"]] = dict(r)
+        for r in conn.execute("SELECT * FROM local_dishes"):
+            # توحيد الحقول مع foods
+            dish = dict(r)
+            dish["protein_per_100g"] = dish.get("protein_per_100g")
+            food_by_id[f"d{r['id']}"] = dish   # بادئة d للتمييز عن foods
+
         allergies_low = [a.lower() for a in req.allergies]
         medical_keywords = []
         for r in rules:
             medical_keywords.extend([str(k) for k in r.avoid_keywords])
-
-        filler = _pick_filler(conn, allergies_low, medical_keywords)
 
         enriched_weeks = []
         for w in (week1,):
@@ -98,11 +103,12 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
                 for meal in day.meals:
                     resolved_items = []
                     for it in meal.items:
-                        food, _corrected = resolve_food_name(it.name, all_names, conn)
+                        # المطابقة بالـ food_id مباشرة — بلا أسماء ولا fuzzy
+                        food = food_by_id.get(it.food_id)
                         if food:
                             qty_factor = _quantity_factor(it.quantity, food)
                             resolved_items.append(FoodItem(
-                                name=food["name"],
+                                food_id=it.food_id,
                                 quantity=it.quantity,
                                 calories=round(food["calories_per_100g"] * qty_factor, 1),
                                 protein_g=round(food["protein_per_100g"] * qty_factor, 1),
@@ -110,32 +116,40 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
                                 fat_g=round(food["fat_per_100g"] * qty_factor, 1),
                             ))
                         else:
-                            resolved_items.append(it)
+                            # fallback نادر — نثق بأرقام الموديل
+                            resolved_items.append(FoodItem(
+                                food_id=it.food_id,
+                                quantity=it.quantity,
+                                calories=it.calories,
+                                protein_g=it.protein_g,
+                                carbs_g=it.carbs_g,
+                                fat_g=it.fat_g,
+                            ))
 
                     meal_target = target / max(1, len(day.meals))
                     meal_cal = sum(float(i.calories) for i in resolved_items)
                     gap = float(meal_target) - meal_cal
-                    close_calorie_gap(resolved_items, gap, filler, allergies_low, medical_keywords)
 
                     m_cal = round(sum(float(i.calories) for i in resolved_items), 1)
                     m_prot = round(sum(float(i.protein_g) for i in resolved_items), 1)
                     m_carb = round(sum(float(i.carbs_g) for i in resolved_items), 1)
                     m_fat = round(sum(float(i.fat_g) for i in resolved_items), 1)
 
+                    # البدائل — بالـ food_id موحد
                     swappables = []
                     for it in resolved_items[:2]:
-                        food, _ = resolve_food_name(it.name, all_names, conn)
+                        food = food_by_id.get(it.food_id)
                         if not food:
                             continue
                         cat = str(food.get("category", ""))
                         opts = build_swappable(
-                            it.name, cat, float(it.calories),
-                            allergies_low, medical_keywords, conn,
+                            it.food_id, cat, float(it.calories),
+                            allergies_low, medical_keywords, food_by_id,
                         )
                         if opts:
                             swappables.append(SwappableComponent(
                                 component="protein" if "Protein" in cat else ("carbs" if "Carbs" in cat else "full_meal"),
-                                current_item=it.name,
+                                current_food_id=it.food_id,
                                 options=[FoodItem(**o) for o in opts],
                             ))
 
@@ -178,39 +192,21 @@ def generate_nutrition_plan(req: NutritionPlanRequest):
         ),
         medical_detected=[r.name_ar for r in rules],
         foods_excluded_count=excluded_count,
-        variation_applied=req.variation_hint,   # 🔄 إرجاع التلميح المطبق
         weeks=enriched_weeks,
     )
 
 
 # ===== دوال مساعدة =====
 
-def _pick_filler(conn, allergies_low, medical_keywords) -> dict:
-    for candidate in ["Olive oil", "Honey", "Banana"]:
-        row = conn.execute(
-            "SELECT * FROM foods WHERE LOWER(name)=LOWER(?) LIMIT 1", (candidate,)
-        ).fetchone()
-        if not row:
-            continue
-        food = dict(row)
-        fname = str(food["name"]).lower()
-        if any(a in fname or fname in a for a in allergies_low):
-            continue
-        if any(str(kw).lower() in fname for kw in medical_keywords):
-            continue
-        return food
-    row = conn.execute("SELECT * FROM foods LIMIT 1").fetchone()
-    return dict(row)
-
-
 def _quantity_factor(quantity: str, food: dict) -> float:
     """يحول الكمية النصية لمعامل من 100غ"""
+    import re
     q = (quantity or "").lower()
     m = re.search(r"(\d+(?:\.\d+)?)\s*(غ|جرام|غرام|g\b)", q)
     if m:
         grams = float(m.group(1))
         return grams / 100
-    m = re.search(r"(\d+)\s*(حبة|حبت|بيضة|رغيف|كوب)", q)
+    m = re.search(r"(\d+)\s*(حبة|حبت|بيضة|رغيف|كوب|طبق)", q)
     if m:
         count = float(m.group(1))
         serving = food.get("serving_grams") or 100

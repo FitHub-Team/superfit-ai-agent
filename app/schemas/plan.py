@@ -1,8 +1,8 @@
 # ==========================================
 # عقد خطة SuperFit — طبقتان:
-#   طبقة 1 (LLM*): مخرجات خام من الموديل — بالـ exercise_id فقط
-#   طبقة 2 (النهائية): الرد المعياري لـ Laravel — IDs موحدة
-# v3: Exercise Library موحدة — الـ AI يرد exercise_id فقط (ممنوع أسماء)
+#   طبقة 1 (LLM*): مخرجات خام من الموديل — food_id فقط
+#   طبقة 2 (النهائية): الرد المعياري لـ Laravel — Food Library موحدة
+# v3: توحيد التغذية بالـ food_id (نفس نظام التمارين)
 # ==========================================
 
 from pydantic import BaseModel, Field
@@ -19,13 +19,14 @@ WeekDay = Literal["saturday", "sunday", "monday", "tuesday",
 
 # ==========================================
 # طبقة 1: مخرجات الـ LLM (الخام) — التغذية
+# 🆕 food_id فقط — ممنوع أسماء
 # ==========================================
 
 class LLMFoodItem(BaseModel):
-    name: str = Field(..., description="الاسم الإنجليزي من القائمة حرفياً")
-    name_ar: Optional[str] = Field(
-        default=None,
-        description="الاسم العربي — قد يرجعه الموديل، أو يُملأ بالكود من القاعدة"
+    food_id: int = Field(
+        ...,
+        ge=0,
+        description="معرف الطعام — يجب أن يكون موجوداً حرفياً بقائمة الأطعمة المعطاة"
     )
     quantity: str = Field(..., description="مثال: 150 غرام / 2 حبة")
     calories: float = Field(..., ge=0)
@@ -51,7 +52,7 @@ class LLMNutritionWeek(BaseModel):
 
 # ==========================================
 # طبقة 1: مخرجات الـ LLM (الخام) — التمارين
-# 🆕 v3: exercise_id فقط — ممنوع أسماء
+# exercise_id فقط — ممنوع أسماء
 # ==========================================
 
 class LLMExercise(BaseModel):
@@ -67,7 +68,7 @@ class LLMExercise(BaseModel):
 
 class LLMSession(BaseModel):
     focus: str = Field(..., description="من تقسيم الأيام المعطى")
-    focus_ar: Optional[str] = None       # 🇵🇸
+    focus_ar: Optional[str] = None
     exercises: list[LLMExercise] = Field(..., min_length=3, max_length=8)
 
 
@@ -86,6 +87,7 @@ class LLMWorkoutWeek(BaseModel):
 
 # ==========================================
 # طبقة 2: الرد النهائي (لـ Laravel) — التغذية
+# 🆕 food_id فقط — التفاصيل بيجيبها الباك من مكتبته
 # ==========================================
 
 class PlanSummary(BaseModel):
@@ -98,8 +100,7 @@ class PlanSummary(BaseModel):
 
 
 class FoodItem(BaseModel):
-    name: str                                    # إنجليزي — تقني
-    name_ar: Optional[str] = None                # 🇵🇸 عربي — للعرض
+    food_id: int
     quantity: str
     calories: float
     protein_g: float
@@ -109,8 +110,7 @@ class FoodItem(BaseModel):
 
 class SwappableComponent(BaseModel):
     component: Literal["protein", "carbs", "fat", "full_meal"]
-    current_item: str
-    current_item_ar: Optional[str] = None
+    current_food_id: int
     options: list[FoodItem]
 
 
@@ -148,7 +148,7 @@ class NutritionPlanResponse(BaseModel):
 
 # ==========================================
 # طبقة 2: الرد النهائي (لـ Laravel) — التمارين
-# 🆕 v3: exercise_id فقط — التفاصيل بيجيبها الباك من مكتبته
+# exercise_id فقط — التفاصيل بيجيبها الباك من مكتبته
 # ==========================================
 
 class ExerciseItem(BaseModel):
